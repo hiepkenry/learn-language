@@ -9,7 +9,8 @@ import {
   Stats,
   AddJob,
   AddWord,
-  JlptN1
+  JlptN1,
+  StudyWord
 } from './pages/dashboard';
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path='add-job' element={<AddJob />} />
           <Route path='add-word' element={<AddWord />} />
           <Route path='jlpt-N1' element={<JlptN1 />} />
+          <Route path='jlpt-N1/studyNewWord' element={<StudyWord />} />
           <Route path='profile' element={<Profile />} />
         </Route>
         <Route path='register' element={<Register />} />

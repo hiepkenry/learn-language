@@ -7,7 +7,8 @@ import Wrapper from '../assets/wrappers/JobsContainer';
 // import PageBtnContainer from './PageBtnContainer';
 const JlptContainer = () => {
 
-  const jpltContent = [{ "title": "Từ vựng", "_id": 1 }, { "title": "chữ hán", "_id": 2 }, { "title": "Đọc hiểu", "_id": 3 }, { "title": "JLPT", "_id": 4}];
+  const jpltContent = [{ "title": "Từ vựng", "_id": 1 }, { "title": "chữ hán", "_id": 2 }, { "title": "Đọc hiểu", "_id": 3 }, { "title": "JLPT", "_id": 4 }];
+  
   const jpltLevel = ["Từ vựng", "chữ hán", "Đọc hiểu", "JLPT"];
 
   return (

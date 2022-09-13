@@ -33,7 +33,7 @@ const Job = ({
         <footer>
           <div className='actions'>
             <Link
-              to='/add-job'
+              to='/jlpt-N1/studyNewWord'
               className='btn edit-btn'
             // onClick={() =>
             //   dispatch(
@@ -48,15 +48,15 @@ const Job = ({
             //   )
             // }
             >
-              Edit
+              Học từ Vựng
             </Link>
-            <button
+            {/* <button
               type='button'
               className='btn delete-btn'
             // onClick={() => dispatch(deleteJob(_id))}
             >
               delete
-            </button>
+            </button> */}
           </div>
         </footer>
       </div>
