@@ -9,6 +9,7 @@ import {
   Stats,
   AddJob,
   AddWord,
+  JlptN1
 } from './pages/dashboard';
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path='all-jobs' element={<AllJobs />} />
           <Route path='add-job' element={<AddJob />} />
           <Route path='add-word' element={<AddWord />} />
+          <Route path='jlpt-N1' element={<JlptN1 />} />
           <Route path='profile' element={<Profile />} />
         </Route>
         <Route path='register' element={<Register />} />
