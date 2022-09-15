@@ -10,7 +10,8 @@ import {
   AddJob,
   AddWord,
   JlptN1,
-  StudyWord
+  StudyWord,
+  Learn
 } from './pages/dashboard';
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path='add-word' element={<AddWord />} />
           <Route path='jlpt-N1' element={<JlptN1 />} />
           <Route path='jlpt-N1/studyNewWord' element={<StudyWord />} />
+          <Route path='jlpt-N1/studyNewWord/learn' element={<Learn />} />
           <Route path='profile' element={<Profile />} />
         </Route>
         <Route path='register' element={<Register />} />

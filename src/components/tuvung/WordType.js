@@ -1,15 +1,13 @@
 import { useEffect } from 'react';
 import Jlpt from './Jlpt';
-import Wrapper from '../assets/wrappers/JobsContainer';
+import Wrapper from '../../assets/wrappers/JobsContainer';
 // import { useSelector, useDispatch } from 'react-redux';
 // import Loading from './Loading';
 // import { getAllJobs } from '../features/allJobs/allJobsSlice';
 // import PageBtnContainer from './PageBtnContainer';
-const JlptContainer = () => {
+const WordType = () => {
 
-  const jpltContent = [{ "title": "Từ vựng", "_id": 1 }, { "title": "chữ hán", "_id": 2 }, { "title": "Đọc hiểu", "_id": 3 }, { "title": "JLPT", "_id": 4 }];
-  
-  const jpltLevel = ["Từ vựng", "chữ hán", "Đọc hiểu", "JLPT"];
+  const jpltContent = [{ "title": "Mimikara", "_id": 1, "level": 2 }, { "title": "3000 từ vựng", "_id": 2, "level": 2 }, { "title": "kikutan", "_id": 3, "level": 2 }, { "title": "JLPT test", "_id": 4, "level": 2 }];
 
   return (
     <Wrapper>
@@ -24,4 +22,4 @@ const JlptContainer = () => {
   );
 };
 
-export default JlptContainer;
+export default WordType;

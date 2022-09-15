@@ -1,18 +1,25 @@
 import { FaLocationArrow, FaBriefcase, FaCalendarAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import Wrapper from '../assets/wrappers/Job';
+import Wrapper from '../../assets/wrappers/Job';
 import { useDispatch } from 'react-redux';
-import JobInfo from './JobInfo';
+import JobInfo from '../JobInfo';
 import moment from 'moment';
-import { deleteJob, setEditJob } from '../features/job/jobSlice';
-const Job = ({
+import { deleteJob, setEditJob } from '../../features/job/jobSlice';
+const Jlpt = ({
   _id,
   title,
-
+  level
 }) => {
   // const dispatch = useDispatch();
   var today = new Date()
   const date = moment(today).format('MMM Do, YYYY');
+  var url = "studyNewWord";
+  var title = "Học Từ Vựng"
+  if (level == 2) {
+    url = "learn"
+    title = "Bắt đầu Học"
+  }
+
 
   return (
     <Wrapper>
@@ -32,35 +39,17 @@ const Job = ({
         </div>
         <footer>
           <div className='actions'>
+
             <Link
-              to='/jlpt-N1/studyNewWord'
-              className='btn edit-btn'
-            // onClick={() =>
-            //   dispatch(
-            //     setEditJob({
-            //       editJobId: _id,
-            //       position,
-            //       company,
-            //       jobLocation,
-            //       jobType,
-            //       status,
-            //     })
-            //   )
-            // }
+              to={url}
+              className='btn lear-btn'
             >
-              Học từ Vựng
+              {title}
             </Link>
-            {/* <button
-              type='button'
-              className='btn delete-btn'
-            // onClick={() => dispatch(deleteJob(_id))}
-            >
-              delete
-            </button> */}
           </div>
         </footer>
       </div>
     </Wrapper>
   );
 };
-export default Job;
+export default Jlpt;

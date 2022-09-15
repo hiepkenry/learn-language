@@ -39,6 +39,13 @@ const Wrapper = styled.section`
       margin-top: 0;
     }
   }
+  .lear-btn{
+     color: var(--green-dark);
+    background: var(--green-light);
+    // margin-right: 6.5rem;
+    margin-top: 1.5rem;
+    text-align:center;
+  }
 `
 
 export default Wrapper

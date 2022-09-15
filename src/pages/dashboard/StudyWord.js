@@ -1,10 +1,10 @@
-import { JobsContainer, SearchContainer } from '../../components';
+import { WordType, SearchWord } from '../../components';
 
 const StudyWord = () => {
   return (
     <>
-      <SearchContainer />
-      {/* <JobsContainer /> */}
+      <SearchWord />
+      <WordType />
     </>
   );
 };
