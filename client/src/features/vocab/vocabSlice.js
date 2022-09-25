@@ -12,6 +12,7 @@ const initialState = {
   image: '',
   vdjp: ["はははは","ひひひ"],
   vdvn: ["hahaha", "hihihi"],
+  vden: ["hahaha", "hihihi"],
   chudeOptions:["人と人の関係","暮らし","家","学校","会社","私の町","健康","お気に入り","世界","自然","ニュース","様子","その他"],
   chude:"人と人の関係",
   wordTypeOptions: ['名', '動'],
@@ -20,6 +21,8 @@ const initialState = {
   wordLevel: 'n1',
   statusOptions: ['public','private'],
   status: 'public',
+  curriculumOptions: ['tango', 'mimikara','kikutan','try','somatome'],
+  curriculum: 'tango',
   isEditing: false,
   editwordId: '',
 };

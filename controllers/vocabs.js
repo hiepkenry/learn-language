@@ -5,10 +5,10 @@ const mongoose = require('mongoose');
 const moment = require('moment');
 
 const getAllVocabs = async (req, res) => {
-  const { search, status, vocabType, vocabTitle, sort } = req.query;
+  const { search, status, wordType, chude, sort, curriculum } = req.query;
 
   const queryObject = {
-    createdBy: req.user.userId,
+    // createdBy: req.user.userId,
   };
 
   if (search) {
@@ -17,9 +17,16 @@ const getAllVocabs = async (req, res) => {
   if (status && status !== 'all') {
     queryObject.status = status;
   }
-  if (vocabType && vocabType !== 'all') {
-    queryObject.vocabType = vocabType;
+  if (wordType && wordType !== 'all') {
+    queryObject.wordType = wordType;
   }
+  if (chude && chude !== 'all') {
+    queryObject.chude = chude;
+  }
+  if (curriculum && curriculum !== 'all') {
+    queryObject.curriculum = curriculum;
+  }
+  console.log(queryObject);
   let result = Vocab.find(queryObject);
 
   if (sort === 'latest') {
@@ -36,7 +43,7 @@ const getAllVocabs = async (req, res) => {
   }
 
   const page = Number(req.query.page) || 1;
-  const limit = Number(req.query.limit) || 10;
+  const limit = Number(req.query.limit) || 30;
   const skip = (page - 1) * limit;
 
   result = result.skip(skip).limit(limit);
@@ -46,7 +53,7 @@ const getAllVocabs = async (req, res) => {
   const totalVocabs = await Vocab.countDocuments(queryObject);
   const numOfPages = Math.ceil(totalVocabs / limit);
 
-  res.status(StatusCodes.OK).json({ vocabs, numOfPages, numOfPages });
+  res.status(StatusCodes.OK).json({ vocabs, numOfPages, totalVocabs });
 };
 const getVocab = async (req, res) => {
   const {

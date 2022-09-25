@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   }
   .text {
     text-transform: capitalize;
-    letter-spacing: var(--letterSpacing);
+    /* letter-spacing: var(--letterSpacing); */
   }
 `
 export default Wrapper

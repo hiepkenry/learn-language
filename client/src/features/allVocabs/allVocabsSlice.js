@@ -8,6 +8,7 @@ const initialFiltersState = {
   searchType: 'all',
   searchLevel: 'N1',
   searchTitle: 'all',
+  searchCurriculum: 'tango',
   sort: 'latest',
   sortOptions: ['latest', 'oldest', 'a-z', 'z-a'],
 };
@@ -15,7 +16,7 @@ const initialFiltersState = {
 const initialState = {
   isLoading: true,
   vocabs: [],
-  totalJobs: 0,
+  totalVocabs: 0,
   numOfPages: 1,
   page: 1,
   stats: {},
@@ -24,7 +25,7 @@ const initialState = {
 };
 
 export const getAllVocabs = createAsyncThunk('allVocabs/getVocabs', getAllVocabsThunk);
-export const showStats = createAsyncThunk('allVocabs/getVocabs', showStatsThunk);
+export const showStats = createAsyncThunk('allVocabs/getStats', showStatsThunk);
 
 const allVocabsSlice = createSlice({
   name: 'allVocabs',
@@ -52,24 +53,24 @@ const allVocabsSlice = createSlice({
 
     [getAllVocabs.pending]: (state) => {
       state.isLoading = true;
-      console.log("pen");
     },
     [getAllVocabs.fulfilled]: (state, { payload }) => {
-      console.log("ful");
       state.isLoading = false;
       state.vocabs = payload.vocabs;
       state.numOfPages = payload.numOfPages;
-      state.totalJobs = payload.totalJobs;
+      state.totalVocabs = payload.totalVocabs;
     },
     [getAllVocabs.rejected]: (state, { payload }) => {
-      console.log("fal");
+
       state.isLoading = false;
       toast.error(payload);
     },
     [showStats.pending]: (state) => {
       state.isLoading = true;
+
     },
     [showStats.fulfilled]: (state, { payload }) => {
+
       state.isLoading = false;
       state.stats = payload.defaultStats;
       state.monthlyApplications = payload.monthlyApplications;

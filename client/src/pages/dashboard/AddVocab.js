@@ -20,6 +20,7 @@ const AddVocab = () => {
     image,
     vdjp,
     vdvn,
+    vden,
     chudeOptions,
     chude,
     wordTypeOptions,
@@ -28,6 +29,8 @@ const AddVocab = () => {
     wordLevel,
     statusOptions,
     status,
+    curriculumOptions,
+    curriculum,
     isEditing,
     editVocabId
   } = useSelector((store) => store.vocab);
@@ -53,10 +56,12 @@ const AddVocab = () => {
             image,
             vdjp,
             vdvn,
+            vden,
             chude,
             wordType,
             wordLevel,
-            status },
+            status,
+            curriculum},
         })
       );
       return;
@@ -69,11 +74,15 @@ const AddVocab = () => {
       hantu,
       image,
       vdjp,
+      vden,
       vdvn,
       chude,
       wordType,
       wordLevel,
-      status
+      status,
+
+
+
 }));
   };
 
@@ -155,6 +164,14 @@ const AddVocab = () => {
             value={vdvn}
             handleChange={handleVocabInput}
           />
+          {/* Ví Dụ Tiếng Anh */}
+          <FormRow
+            type='text'
+            name='vden'
+            labelText='Ví Dụ Tiếng Anh'
+            value={vden}
+            handleChange={handleVocabInput}
+          />
           {/* Hình ảnh */}
           <FormRow
             type='text'
@@ -172,7 +189,7 @@ const AddVocab = () => {
           />
           {/* chủ đề */}
           <FormRowSelect
-            name='status'
+            name='chude'
             value={chude}
             labelText='Chủ Đề'
             handleChange={handleVocabInput}
@@ -193,6 +210,14 @@ const AddVocab = () => {
             value={wordLevel}
             handleChange={handleVocabInput}
             list={wordLevelOptions}
+          />
+          {/*  curriculumOptions */}
+          <FormRowSelect
+            name='curriculum'
+            labelText='Giáo trình'
+            value={curriculum}
+            handleChange={handleVocabInput}
+            list={curriculumOptions}
           />
           <div className='btn-container'>
             <button

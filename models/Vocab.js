@@ -5,34 +5,38 @@ const TuvungSchema = new mongoose.Schema(
   {
     kanji: {
       type: String,
-      required: [true, 'Please provide company name'],
+      required: [true, 'Please provide kanji'],
       maxlength: 50,
     },
     hiragana: {
       type: String,
-      required: [true, 'Please provide company name'],
+      required: [true, 'Please provide hỉagana'],
       maxlength: 50,
     },
     vn: {
       type: String,
-      required: [true, 'Please provide position'],
+      required: [true, 'Please provide vietnamese'],
       maxlength: 100,
     },
     en: {
       type: String,
-      // required: [true, 'Please provide position'],
+       required: [true, 'Please provide engliah'],
       maxlength: 100,
     },
     hantu: {
       type: String,
-      required: [true, 'Please provide position'],
+      // required: [true, 'Please provide position'],
       maxlength: 100,
     },
     vdjp: {
       type: [String],
       required: true,
     },
-    vdtv: {
+    vdvn: {
+      type: [String],
+      required: true,
+    },
+    vden: {
       type: [String],
       required: true,
     },
@@ -60,6 +64,11 @@ const TuvungSchema = new mongoose.Schema(
       type: String,
       enum: ['public', 'private'],
       default: 'public',
+    },
+    curriculum: {
+      type: String,
+      enum: ['tango', 'mimikara', 'kikutan', 'try', 'somatome'],
+      default: 'tango',
     },
     createdBy: {
       type: mongoose.Types.ObjectId,

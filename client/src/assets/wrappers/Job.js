@@ -8,7 +8,7 @@ const Wrapper = styled.article`
   box-shadow: var(--shadow-2);
 
   header {
-    padding: 1rem 1.5rem;
+     padding: 0.5rem 1rem;
     border-bottom: 1px solid var(--grey-100);
     display: grid;
     grid-template-columns: auto 1fr;
@@ -33,48 +33,64 @@ const Wrapper = styled.article`
   .info {
     h5 {
       margin-bottom: 0.25rem;
+      color: var(--primary-600);
+      font-size: 20px;
+      font-weight: bold;
+      column-gap: 1rem;
+       display: flex;
+
     }
     p {
       margin: 0;
       text-transform: capitalize;
-      color: var(--grey-400);
-      letter-spacing: var(--letterSpacing);
+      color: var(--black);
+      /* letter-spacing: var(--letterSpacing); */
+    }
+    .hantu{
+       color: var(--grey-500);
+      /* letter-spacing: var(--letterSpacing); */
+      font-size: small;
     }
   }
-  .pending {
-    background: #fcefc7;
-    color: #e9b949;
-  }
-  .interview {
+ .speechMenu{
+        font-size: 19px;
+         align-self: center;
+        color: var(--primary-500);
+        /* height: 20px; */
+       }
+  .public {
     background: #e0e8f9;
     color: #647acb;
   }
-  .declined {
+  .private {
     color: #d66a6a;
     background: #ffeeee;
   }
   .content {
-    padding: 1rem 1.5rem;
+    padding: 0.5rem 1rem;
+    .jptext {
+    display: flex;
+    column-gap: 1rem;
+    }
+  }
+  .text {
+    text-transform: capitalize;
+    /* letter-spacing: var(--letterSpacing); */
   }
   .content-center {
     display: grid;
     grid-template-columns: 1fr;
     row-gap: 0.5rem;
+    column-gap: 1rem;
     @media (min-width: 576px) {
-      grid-template-columns: 1fr 1fr;
-    }
-    @media (min-width: 992px) {
-      grid-template-columns: 1fr;
-    }
-    @media (min-width: 1120px) {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 2fr;
     }
   }
 
   .status {
     border-radius: var(--borderRadius);
     text-transform: capitalize;
-    letter-spacing: var(--letterSpacing);
+    /* letter-spacing: var(--letterSpacing); */
     text-align: center;
     width: 100px;
     height: 30px;
@@ -85,7 +101,7 @@ const Wrapper = styled.article`
   }
   .edit-btn,
   .delete-btn {
-    letter-spacing: var(--letterSpacing);
+    /* letter-spacing: var(--letterSpacing); */
     cursor: pointer;
     height: 30px;
   }

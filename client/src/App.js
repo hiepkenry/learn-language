@@ -8,6 +8,7 @@ import {
   // AddJob,
   AddVocab,
   AllVocabs,
+  Vocabs,
   Stats,
   SharedLayout,
 } from './pages/dashboard';
@@ -24,8 +25,8 @@ function App() {
           }
         >
           <Route index element={<Stats />} />
-          <Route path='jlpt-N1' element={<AllVocabs />} />
-          <Route path='jlpt-N2' element={<AllVocabs />} />
+          <Route path='tu-vung' element={<Vocabs />} />
+          <Route path='ngu-phap' element={<AllVocabs />} />
           <Route path='add-vocab' element={<ProtectedDashboard> <AddVocab /></ProtectedDashboard>} />
           <Route path='all-vocab' element={<ProtectedDashboard> <AllVocabs /></ProtectedDashboard>} />
           <Route path='profile' element={<Profile />} />

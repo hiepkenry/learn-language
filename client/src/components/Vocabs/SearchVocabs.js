@@ -1,15 +1,15 @@
-import { FormRow, FormRowSelect } from '.';
-import Wrapper from '../assets/wrappers/SearchVocabs';
+import { FormRow, FormRowSelect } from '..';
+import Wrapper from '../../assets/wrappers/SearchVocabs';
 import { useSelector, useDispatch } from 'react-redux';
-import { handleChange, clearFilters } from '../features/allVocabs/allVocabsSlice';
+import { handleChange, clearFilters } from '../../features/allVocabs/allVocabsSlice';
 
-const SearchContainer = () => {
-  const { isLoading, search, searchStatus,
+const SearchVocabs = () => {
+  const { isLoading, search,
     searchType, searchTitle,
     searchLevel, sort, sortOptions, searchCurriculum } =
     useSelector((store) => store.allVocabs);
 
-  const { wordTypeOptions, wordLevelOptions, chudeOptions, statusOptions, curriculumOptions } = useSelector((store) => store.vocab);
+  const { wordTypeOptions, wordLevelOptions, chudeOptions, curriculumOptions } = useSelector((store) => store.vocab);
 
   const dispatch = useDispatch();
 
@@ -34,14 +34,7 @@ const SearchContainer = () => {
             value={search}
             handleChange={handleSearch}
           />
-          {/* search by status */}
-          <FormRowSelect
-            labelText='status'
-            name='searchStatus'
-            value={searchStatus}
-            handleChange={handleSearch}
-            list={[...statusOptions]}
-          />
+
 
           {/* search by type*/}
           <FormRowSelect
@@ -94,4 +87,4 @@ const SearchContainer = () => {
     </Wrapper>
   );
 };
-export default SearchContainer;
+export default SearchVocabs;
