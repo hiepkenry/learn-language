@@ -5,35 +5,31 @@ import { toast } from 'react-toastify';
 import {
   handleChange,
   clearValues,
-  createVocab,
-  editVocab,
-} from '../../features/vocab/vocabSlice';
+  createGrammar,
+  editGrammar,
+} from '../../features/grammar/grammarSlice';
 import { useEffect } from 'react';
-const AddVocab = () => {
+const AddGrammar = () => {
   const {
     isLoading,
     kanji,
     hiragana,
     vn,
     en,
-    hantu,
-    image,
     vdjp,
     vdvn,
     vden,
     chudeOptions,
     chude,
-    wordTypeOptions,
-    wordType,
-    wordLevelOptions,
-    wordLevel,
+    grammarLevelOptions,
+    grammarLevel,
     statusOptions,
     status,
     curriculumOptions,
     curriculum,
     isEditing,
-    editVocabId
-  } = useSelector((store) => store.vocab);
+    editGrammarId
+  } = useSelector((store) => store.grammar);
   const { user } = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
@@ -45,49 +41,44 @@ const AddVocab = () => {
     }
     if (isEditing) {
       dispatch(
-        editVocab({
-          vocabId: editVocabId,
-          vocab: {
+        editGrammar({
+          grammarId: editGrammarId,
+          grammar: {
             kanji,
             hiragana,
             vn,
             en,
-            hantu,
-            image,
             vdjp,
             vdvn,
             vden,
             chude,
-            wordType,
-            wordLevel,
+            grammarLevel,
             status,
-            curriculum},
+            curriculum
+          },
         })
       );
       return;
     }
-    dispatch(createVocab({
+    dispatch(createGrammar({
       kanji,
       hiragana,
       vn,
       en,
-      hantu,
-      image,
       vdjp,
       vden,
       vdvn,
       chude,
-      wordType,
-      wordLevel,
+      grammarLevel,
       status,
       curriculum
 
 
 
-}));
+    }));
   };
 
-  const handleVocabInput = (e) => {
+  const handleGrammarInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     dispatch(handleChange({ name, value }));
@@ -107,7 +98,7 @@ const AddVocab = () => {
   return (
     <Wrapper>
       <form className='form'>
-        <h3>{isEditing ? 'edit Vocab' : 'add Vocab'}</h3>
+        <h3>{isEditing ? 'edit Grammar' : 'add Grammar'}</h3>
         <div className='form-center'>
           {/* Chữ Hán */}
           <FormRow
@@ -115,7 +106,7 @@ const AddVocab = () => {
             name='kanji'
             labelText='Chữ Hán'
             value={kanji}
-            handleChange={handleVocabInput}
+            handleChange={handleGrammarInput}
           />
           {/* Cách Đọc */}
           <FormRow
@@ -123,7 +114,7 @@ const AddVocab = () => {
             name='hiragana'
             labelText='Cách Đọc'
             value={hiragana}
-            handleChange={handleVocabInput}
+            handleChange={handleGrammarInput}
           />
           {/* Tiếng Việt */}
           <FormRow
@@ -131,7 +122,7 @@ const AddVocab = () => {
             name='vn'
             labelText='Tiếng Việt'
             value={vn}
-            handleChange={handleVocabInput}
+            handleChange={handleGrammarInput}
           />
           {/* Tiếng Anh */}
           <FormRow
@@ -139,15 +130,7 @@ const AddVocab = () => {
             name='en'
             labelText='Tiếng Anh'
             value={en}
-            handleChange={handleVocabInput}
-          />
-          {/* Hán Tự */}
-          <FormRow
-            type='text'
-            name='hantu'
-            labelText='Hán Tự'
-            value={hantu}
-            handleChange={handleVocabInput}
+            handleChange={handleGrammarInput}
           />
           {/* Ví Dụ Tiếng Nhật */}
           <FormRow
@@ -155,7 +138,7 @@ const AddVocab = () => {
             name='vdjp'
             labelText='Ví Dụ Tiếng Nhật'
             value={vdjp}
-            handleChange={handleVocabInput}
+            handleChange={handleGrammarInput}
           />
           {/* Ví Dụ Tiếng Việt */}
           <FormRow
@@ -163,7 +146,7 @@ const AddVocab = () => {
             name='vdvn'
             labelText='Ví Dụ Tiếng Việt'
             value={vdvn}
-            handleChange={handleVocabInput}
+            handleChange={handleGrammarInput}
           />
           {/* Ví Dụ Tiếng Anh */}
           <FormRow
@@ -171,21 +154,13 @@ const AddVocab = () => {
             name='vden'
             labelText='Ví Dụ Tiếng Anh'
             value={vden}
-            handleChange={handleVocabInput}
-          />
-          {/* Hình ảnh */}
-          <FormRow
-            type='text'
-            name='image'
-            labelText='Hình Ảnh'
-            value={image}
-            handleChange={handleVocabInput}
+            handleChange={handleGrammarInput}
           />
           {/* status */}
           <FormRowSelect
             name='status'
             value={status}
-            handleChange={handleVocabInput}
+            handleChange={handleGrammarInput}
             list={statusOptions}
           />
           {/* chủ đề */}
@@ -193,31 +168,24 @@ const AddVocab = () => {
             name='chude'
             value={chude}
             labelText='Chủ Đề'
-            handleChange={handleVocabInput}
+            handleChange={handleGrammarInput}
             list={chudeOptions}
           />
-          {/* Loại từ vựng*/}
-          <FormRowSelect
-            name='wordType'
-            labelText='Loại từ vựng'
-            value={wordType}
-            handleChange={handleVocabInput}
-            list={wordTypeOptions}
-          />
+
           {/* Phân loại Mức Độ*/}
           <FormRowSelect
-            name='wordLevel'
+            name='grammarLevel'
             labelText='Phân loại Mức Độ'
-            value={wordLevel}
-            handleChange={handleVocabInput}
-            list={wordLevelOptions}
+            value={grammarLevel}
+            handleChange={handleGrammarInput}
+            list={grammarLevelOptions}
           />
           {/*  curriculumOptions */}
           <FormRowSelect
             name='curriculum'
             labelText='Giáo trình'
             value={curriculum}
-            handleChange={handleVocabInput}
+            handleChange={handleGrammarInput}
             list={curriculumOptions}
           />
           <div className='btn-container'>
@@ -242,4 +210,4 @@ const AddVocab = () => {
     </Wrapper>
   );
 };
-export default AddVocab;
+export default AddGrammar;

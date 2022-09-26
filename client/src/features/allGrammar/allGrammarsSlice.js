@@ -1,11 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { getAllVocabsThunk, showStatsThunk } from './allVocabsThunk';
+import { getAllGrammarsThunk } from './allGrammarsThunk';
 
 const initialFiltersState = {
   search: '',
   searchStatus: 'public',
-  searchType: 'all',
   searchLevel: 'N1',
   searchTitle: 'all',
   searchCurriculum: 'tango',
@@ -15,8 +14,8 @@ const initialFiltersState = {
 
 const initialState = {
   isLoading: true,
-  vocabs: [],
-  totalVocabs: 0,
+  grammars: [],
+  totalGrammar: 0,
   numOfPages: 1,
   page: 1,
   stats: {},
@@ -24,11 +23,11 @@ const initialState = {
   ...initialFiltersState,
 };
 
-export const getAllVocabs = createAsyncThunk('allVocabs/getVocabs', getAllVocabsThunk);
-export const showStats = createAsyncThunk('allVocabs/getStats', showStatsThunk);
+export const getAllGrammars = createAsyncThunk('allGrammar/getGrammar', getAllGrammarsThunk);
+// export const showStats = createAsyncThunk('allGrammar/getStats', showStatsThunk);
 
-const allVocabsSlice = createSlice({
-  name: 'allVocabs',
+const allGrammarsSlice = createSlice({
+  name: 'allGrammar',
   initialState,
   reducers: {
     showLoading: (state) => {
@@ -51,34 +50,34 @@ const allVocabsSlice = createSlice({
   },
   extraReducers: {
 
-    [getAllVocabs.pending]: (state) => {
+    [getAllGrammars.pending]: (state) => {
       state.isLoading = true;
     },
-    [getAllVocabs.fulfilled]: (state, { payload }) => {
+    [getAllGrammars.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
-      state.vocabs = payload.vocabs;
+      state.grammars = payload.grammars;
       state.numOfPages = payload.numOfPages;
-      state.totalVocabs = payload.totalVocabs;
+      state.totalGrammar = payload.totalGrammars;
     },
-    [getAllVocabs.rejected]: (state, { payload }) => {
+    [getAllGrammars.rejected]: (state, { payload }) => {
 
       state.isLoading = false;
       toast.error(payload);
     },
-    [showStats.pending]: (state) => {
-      state.isLoading = true;
+    // [showStats.pending]: (state) => {
+    //   state.isLoading = true;
 
-    },
-    [showStats.fulfilled]: (state, { payload }) => {
+    // },
+    // [showStats.fulfilled]: (state, { payload }) => {
 
-      state.isLoading = false;
-      state.stats = payload.defaultStats;
-      state.monthlyApplications = payload.monthlyApplications;
-    },
-    [showStats.rejected]: (state, { payload }) => {
-      state.isLoading = false;
-      toast.error(payload);
-    },
+    //   state.isLoading = false;
+    //   state.stats = payload.defaultStats;
+    //   state.monthlyApplications = payload.monthlyApplications;
+    // },
+    // [showStats.rejected]: (state, { payload }) => {
+    //   state.isLoading = false;
+    //   toast.error(payload);
+    // },
   },
 });
 
@@ -88,7 +87,7 @@ export const {
   handleChange,
   clearFilters,
   changePage,
-  clearAllVocabsState,
-} = allVocabsSlice.actions;
+  clearAllGrammarsState,
+} = allGrammarsSlice.actions;
 
-export default allVocabsSlice.reducer;
+export default allGrammarsSlice.reducer;

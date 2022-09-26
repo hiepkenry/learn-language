@@ -11,6 +11,8 @@ import {
   Vocabs,
   Stats,
   SharedLayout,
+  AddGrammar,
+  AllGrammars,
 } from './pages/dashboard';
 function App() {
   return (
@@ -26,7 +28,8 @@ function App() {
         >
           <Route index element={<Stats />} />
           <Route path='tu-vung' element={<Vocabs />} />
-          <Route path='ngu-phap' element={<AllVocabs />} />
+          <Route path='ngu-phap' element={<AllGrammars />} />
+          <Route path='add-grammar' element={<ProtectedDashboard> <AddGrammar /></ProtectedDashboard>} />
           <Route path='add-vocab' element={<ProtectedDashboard> <AddVocab /></ProtectedDashboard>} />
           <Route path='all-vocab' element={<ProtectedDashboard> <AllVocabs /></ProtectedDashboard>} />
           <Route path='profile' element={<Profile />} />

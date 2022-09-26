@@ -9,6 +9,8 @@ import SearchContainer from './SearchContainer';
 import SmallSidebar from './SmallSidebar';
 import StatsContainer from './StatsContainer';
 import SearchVocabs from './Vocabs/SearchVocabs';
+import SearchGrammars from './Grammars/SearchGrammars';
+import GrammarsContainer from './Grammars/GrammarsContainer';
 
 export {
   Logo,
@@ -22,4 +24,6 @@ export {
   StatsContainer,
   ChartsContainer,
   SearchVocabs,
+  SearchGrammars,
+  GrammarsContainer,
 };
