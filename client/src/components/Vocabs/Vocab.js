@@ -1,5 +1,5 @@
 
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { BsFillVolumeUpFill, BsFillVolumeOffFill } from "react-icons/bs";
 import { RiEnglishInput } from "react-icons/ri";
 import { FcRating } from "react-icons/fc";
@@ -35,7 +35,9 @@ const Vocab = ({
   const date = moment(createdAt).format('MMM Do, YYYY');
   const [highlightedText, setHighlightedText] = useState(hiragana)
   const [highlightedVDText, setHighlightedVDText] = useState(vdjp)
-  const [voiceIndex, setVoiceIndex] = useState(null);
+  const [highlightedEng, sethighlightedEng] = useState(en)
+  // const [voice1, setVoice1] = useState(null);highlightedEng
+  // const [voice2, setVoice2] = useState(null);
   const [pitch, setPitch] = useState(1);
   const [rate, setRate] = useState(1);
   const [exampJp, setexampJp] = useState(false);
@@ -45,20 +47,31 @@ const Vocab = ({
   const onEnd = () => {
     setHighlightedText(hiragana)
     setHighlightedVDText(vdjp)
+    sethighlightedEng(en)
+    setexampJp(false)
+    setvocabJp(false)
+    seteng(false)
   }
 
-  const { speak, cancel, speaking, supported, voices } = useSpeechSynthesis({ onEnd })
 
+  const { cancel, supported, speak, voices } = useSpeechSynthesis({ onEnd })
 
-  const voice = voices[6] || null
-  const voice2 = voices[3] || null
+  // console.log(voices.length);
+  // if (voices.length > 0) {
+
+  //  }
+  // useEffect = (() => {
+  const voice1 = voices[1] || null;
+  const voice2 = voices[3] || null;
+
+  // }, [voices])
 
   var isAdmin = false;
   if (user.email == "admin@gmail.com") {
     isAdmin = true;
   }
   //change vocab
-  const splitMatchedText = (str,text)=> {
+  const splitMatchedText = (str, text) => {
     const strReplace = `<span style="color: #0014ff;font-weight: 600;text-decoration: underline;">${kanji}</span>`;
     if (str[0].includes(text)) {
       return str[0].replace(text, strReplace)
@@ -66,9 +79,22 @@ const Vocab = ({
     return str[0]
   }
   //
-  // const setSpeak=()=>{
-
-  // }
+  const setSpeak = (texts, flag) => {
+    var voices = voice1;
+    if (flag == "vd") {
+      setexampJp(true);
+      voices = voice2;
+    }
+    if (flag == "kanji") {
+      setvocabJp(true)
+      voices = voice1;
+    }
+    if (flag == "english") {
+      seteng(true)
+      voices = voice1;
+    }
+    speak({ text: texts, voices, rate, pitch })
+  }
   return (
     <Wrapper>
       <header>
@@ -79,8 +105,8 @@ const Vocab = ({
               <h5>{kanji}
                 {supported &&
                   <div className="speechMenu">
-                    {!speaking
-                      ? <BsFillVolumeUpFill onClick={() => speak({ text: highlightedText, voice, rate, pitch })} />
+                    {!vocabJp
+                      ? <BsFillVolumeUpFill onClick={() => setSpeak(highlightedText, "kanji")} />
                       : <BsFillVolumeOffFill onClick={cancel} />
                     }
                     {/* <SettingsOutlined onClick={() => setShowSpeechSettings(true)}/> */}
@@ -93,7 +119,15 @@ const Vocab = ({
             </div>
             <div className="content-right">
               <p>{vn}</p>
-              <p>{en}</p>
+              <p>{supported &&
+                <div className="speechMenu">
+                  {!eng
+                    ? <BsFillVolumeUpFill onClick={() => setSpeak(highlightedEng, "english")} />
+                    : <BsFillVolumeOffFill onClick={cancel} />
+                  }
+                  {/* <SettingsOutlined onClick={() => setShowSpeechSettings(true)}/> */}
+                </div>
+              }{en}</p>
             </div>
           </div>
         </div>
@@ -102,22 +136,22 @@ const Vocab = ({
       <div className='content'>
         <div className='content-bottom'>
           <div className="jptext">
-          {supported &&
-            <div className="speechMenu">
-              {!speaking
-                ? <BsFillVolumeUpFill onClick={() => speak({ text: highlightedVDText, voice2, rate, pitch })} />
-                : <BsFillVolumeOffFill onClick={cancel} />
-              }
-              {/* <SettingsOutlined onClick={() => setShowSpeechSettings(true)}/> */}
-            </div>
-          }
+            {supported &&
+              <div className="speechMenu">
+                {!exampJp
+                  ? <BsFillVolumeUpFill onClick={() => setSpeak(highlightedVDText, "vd")} />
+                  : <BsFillVolumeOffFill onClick={cancel} />
+                }
+                {/* <SettingsOutlined onClick={() => setShowSpeechSettings(true)}/> */}
+              </div>
+            }
             {/* <JobInfo text={vdjp} /> */}
             <span className="text" dangerouslySetInnerHTML={{ __html: splitMatchedText(vdjp, kanji) }}></span>
           </div>
           <JobInfo icon={<FcRating />} text={vdvn} />
           <JobInfo icon={<RiEnglishInput />} text={vden} />
         </div>
-        {isAdmin&&  ( <footer>
+        {isAdmin && (<footer>
           <div className='actions'>
 
             <Link
@@ -156,7 +190,7 @@ const Vocab = ({
               delete
             </button>
           </div>
-        </footer>) }
+        </footer>)}
 
       </div>
     </Wrapper>
