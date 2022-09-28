@@ -61,11 +61,16 @@ const Vocab = ({
 
   //  }
   // useEffect = (() => {
-  const voice1 = voices[1] || null;
-  const voice2 = voices[3] || null;
+  // const voice1 = voices[1] || null;
+  // const voice2 = voices[3] || null;
 
   // }, [voices])
-
+  // console.log();
+  if (voices.length > 0) {
+    console.log(voices[2]);
+    var voice1 = voices[1] || null;
+    var voice2 = voices[3] || null;
+  }
   var isAdmin = false;
   if (user.email == "admin@gmail.com") {
     isAdmin = true;
@@ -79,7 +84,7 @@ const Vocab = ({
     return str[0]
   }
   //
-  const setSpeak = (texts, flag) => {
+  const setSpeak = (texts, flag, vo) => {
     var voices = voice1;
     if (flag == "vd") {
       setexampJp(true);
@@ -93,6 +98,8 @@ const Vocab = ({
       seteng(true)
       voices = voice1;
     }
+    // console.log(voices[1]);
+    console.log(voice2);
     speak({ text: texts, voices, rate, pitch })
   }
   return (
@@ -103,15 +110,17 @@ const Vocab = ({
           <div className='content-center'>
             <div className="content-left">
               <h5>{kanji}
+
                 {supported &&
                   <div className="speechMenu">
                     {!vocabJp
-                      ? <BsFillVolumeUpFill onClick={() => setSpeak(highlightedText, "kanji")} />
+                      ? <BsFillVolumeUpFill onClick={() => setSpeak(highlightedText, "kanji", voices)} />
                       : <BsFillVolumeOffFill onClick={cancel} />
                     }
                     {/* <SettingsOutlined onClick={() => setShowSpeechSettings(true)}/> */}
                   </div>
                 }
+
               </h5>
               <p className='hantu' >{hantu}</p>
               <p>{hiragana}</p>
@@ -139,7 +148,7 @@ const Vocab = ({
             {supported &&
               <div className="speechMenu">
                 {!exampJp
-                  ? <BsFillVolumeUpFill onClick={() => setSpeak(highlightedVDText, "vd")} />
+                  ? <BsFillVolumeUpFill onClick={() => setSpeak(highlightedVDText, "vd", voices)} />
                   : <BsFillVolumeOffFill onClick={cancel} />
                 }
                 {/* <SettingsOutlined onClick={() => setShowSpeechSettings(true)}/> */}

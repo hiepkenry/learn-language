@@ -2,7 +2,7 @@ import { FormRow, FormRowSelect } from '..';
 import Wrapper from '../../assets/wrappers/SearchVocabs';
 import { useSelector, useDispatch } from 'react-redux';
 import { handleChange, clearFilters } from '../../features/allVocabs/allVocabsSlice';
-
+import { Link } from 'react-router-dom';
 const SearchVocabs = () => {
   const { isLoading, search,
     searchType, searchTitle,
@@ -82,6 +82,14 @@ const SearchVocabs = () => {
           >
             clear filters
           </button>
+          <Link
+            to='/shadowing'
+            className='btn edit-btn'
+
+          >
+
+            hoc
+          </Link>
         </div>
       </form>
     </Wrapper>

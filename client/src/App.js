@@ -13,7 +13,10 @@ import {
   SharedLayout,
   AddGrammar,
   AllGrammars,
+  LearnVocabs,
 } from './pages/dashboard';
+// import ShowText from './components/Learning/ShowText';
+
 function App() {
   return (
     <BrowserRouter>
@@ -27,8 +30,13 @@ function App() {
           }
         >
           <Route index element={<Stats />} />
-          <Route path='tu-vung' element={<Vocabs />} />
-          <Route path='ngu-phap' element={<AllGrammars />} />
+          <Route path='tu-vung' element={<Vocabs />} >
+
+          </Route>
+          <Route path='shadowing' element={<LearnVocabs />} />
+          <Route path='ngu-phap' element={<AllGrammars />}>
+
+          </Route>
           <Route path='add-grammar' element={<ProtectedDashboard> <AddGrammar /></ProtectedDashboard>} />
           <Route path='add-vocab' element={<ProtectedDashboard> <AddVocab /></ProtectedDashboard>} />
           <Route path='all-vocab' element={<ProtectedDashboard> <AllVocabs /></ProtectedDashboard>} />

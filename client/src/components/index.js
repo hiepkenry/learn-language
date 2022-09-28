@@ -11,6 +11,7 @@ import StatsContainer from './StatsContainer';
 import SearchVocabs from './Vocabs/SearchVocabs';
 import SearchGrammars from './Grammars/SearchGrammars';
 import GrammarsContainer from './Grammars/GrammarsContainer';
+import ShowText from './Learning/ShowText';
 
 export {
   Logo,
@@ -26,4 +27,5 @@ export {
   SearchVocabs,
   SearchGrammars,
   GrammarsContainer,
+  ShowText,
 };
