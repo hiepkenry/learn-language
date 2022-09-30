@@ -67,7 +67,7 @@ const Vocab = ({
   // }, [voices])
   // console.log();
   if (voices.length > 0) {
-    console.log(voices[2]);
+    // console.log(voices[2]);
     var voice1 = voices[1] || null;
     var voice2 = voices[3] || null;
   }

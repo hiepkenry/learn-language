@@ -16,44 +16,6 @@ const ShowText = () => {
     totalVocabs,
 
   } = useSelector((store) => store.allVocabs);
-  const dispatch = useDispatch();
-  const [highlightedText, setHighlightedText] = useState("")
-  const [highlightedVDText, setHighlightedVDText] = useState("")
-  const [highlightedEng, sethighlightedEng] = useState("")
-  const [index, setIndex] = useState(0);
-  const [textIndex, settextIndex] = useState(0);
-  const [pitch, setPitch] = useState(1);
-  const [rate, setRate] = useState(1);
-  const onEnd = () => {
-    setHighlightedText(hiragana[textIndex])
-    setHighlightedVDText(vdjp[textIndex])
-    // sethighlightedEng(en[index])
-    setTimeout(() => {
-      setIndex(index => index + 1)
-    }, 3000);
-    setTimeout(() => {
-      settextIndex(textIndex => textIndex + 1)
-    }, 3000);
-
-
-  }
-  const { cancel, supported, speak, voices } = useSpeechSynthesis({ onEnd })
-
-  useEffect(() => {
-    speak({ text: highlightedText, voices, rate, pitch })
-  }, [textIndex]);
-  if (isLoading) {
-    return <Navigate to='/tu-vung' />;
-  }
-  // if (vocabs.length === 0) {
-  //   return (
-  //     <Wrapper>
-  //       <h2>No data to display...</h2>
-
-  //     </Wrapper>
-  //   );
-  // }
-
 
   const kanji = vocabs.map((itemX) => {
     return itemX.kanji
@@ -76,11 +38,58 @@ const ShowText = () => {
   const imageUrl = vocabs.map((itemX) => {
     return itemX.image
   })
+  const dispatch = useDispatch();
+  const [highlightedText, setHighlightedText] = useState(hiragana[0])
+  const [highlightedVDText, setHighlightedVDText] = useState("")
+  const [highlightedEng, sethighlightedEng] = useState("")
+  const [index, setIndex] = useState(0);
+  const [textIndex, settextIndex] = useState(0);
+  const [pitch, setPitch] = useState(1);
+  const [rate, setRate] = useState(1);
+  const onEnd = () => {
+
+    // sethighlightedEng(en[index])
+
+    // setIndex(index => index + 1)
+    // setHighlightedText(hiragana[index])
+    setTimeout(() => {
+      settextIndex(textIndex => textIndex + 1)
+
+    }, 3000);
+
+    // setHighlightedVDText(vdjp[textIndex])
+
+  }
+  const { cancel, supported, speak, voices } = useSpeechSynthesis({ onEnd })
+
+  useEffect(() => {
+    // console.log(textIndex);
+    // console.log(hiragana[textIndex]);
+    // console.log(highlightedText);
+    setTimeout(() => {
+      speak({ text: hiragana[textIndex], voices, rate, pitch })
+    }, 500);
+
+  }, [textIndex]);
+  if (isLoading) {
+    return <Navigate to='/tu-vung' />;
+  }
+  // if (vocabs.length === 0) {
+  //   return (
+  //     <Wrapper>
+  //       <h2>No data to display...</h2>
+
+  //     </Wrapper>
+  //   );
+  // }
+
+
   const startSpeed = () => {
-    setHighlightedText(hiragana[textIndex])
-    setHighlightedVDText(vdjp[textIndex])
-    setIndex(0)
-    settextIndex(0)
+    // setIndex(1)
+    // settextIndex(1)
+    // setHighlightedText(hiragana[0])
+    // setHighlightedVDText(vdjp[0])
+    //console.log(hiragana[0]);
     speak({ text: highlightedText, voices, rate, pitch })
   }
   return (
@@ -94,29 +103,29 @@ const ShowText = () => {
             {/* <TransText key={1} {...vocabs} /> */}
             {/* <h1> */}
             <div className="content-left">
-              <TextTransition springConfig={presets.slow} delay={6000}>
-                <h4>{kanji[index % kanji.length]}</h4>
-              </TextTransition>
-              <TextTransition springConfig={presets.slow} delay={6000}>
-                <p className='hantu'>{hantu[index % hantu.length]}</p>
-              </TextTransition>
-              <TextTransition springConfig={presets.slow} delay={6000}>
-                <p>{hiragana[index % hiragana.length]}</p>
-              </TextTransition>
-              <TextTransition springConfig={presets.slow} delay={6000}>
-                <p>{tiengviet[index % tiengviet.length]}</p>
-              </TextTransition>
+              {/* <TextTransition springConfig={presets.slow} delay={6000}> */}
+              <h4>{kanji[textIndex]}</h4>
+              {/* </TextTransition> */}
+              {/* <TextTransition springConfig={presets.slow} delay={6000}> */}
+              <p className='hantu'>{hantu[textIndex]}</p>
+              {/* </TextTransition> */}
+              {/* <TextTransition springConfig={presets.slow} delay={6000}> */}
+              <p>{hiragana[textIndex]}</p>
+              {/* </TextTransition> */}
+              {/* <TextTransition springConfig={presets.slow} delay={6000}> */}
+              <p>{tiengviet[textIndex]}</p>
+              {/* </TextTransition> */}
             </div>
             <div className="content-right">
-              <TextTransition springConfig={presets.slow} delay={6000}>
-                <img src={process.env.PUBLIC_URL + "images/" + imageUrl[index % imageUrl.length]} />
-              </TextTransition>
-              <TextTransition springConfig={presets.slow} delay={6000}>
-                <p>{vdjp[index % vdjp.length]}</p>
-              </TextTransition>
-              <TextTransition springConfig={presets.slow} delay={6000}>
-                <p>{vdvn[index % vdvn.length]}</p>
-              </TextTransition>
+              {/* <TextTransition springConfig={presets.slow} delay={6000}> */}
+              <img src={process.env.PUBLIC_URL + "images/" + imageUrl[textIndex]} />
+              {/* </TextTransition> */}
+              {/* <TextTransition springConfig={presets.slow} delay={6000}> */}
+              <p>{vdjp[textIndex]}</p>
+              {/* </TextTransition> */}
+              {/* <TextTransition springConfig={presets.slow} delay={6000}> */}
+              <p>{vdvn[textIndex]}</p>
+              {/* </TextTransition> */}
 
             </div>
 
