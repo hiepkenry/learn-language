@@ -38,6 +38,8 @@ const ShowText = () => {
   const imageUrl = vocabs.map((itemX) => {
     return itemX.image
   })
+
+
   const dispatch = useDispatch();
   const [highlightedText, setHighlightedText] = useState(hiragana[0])
   const [highlightedVDText, setHighlightedVDText] = useState("")
@@ -61,6 +63,12 @@ const ShowText = () => {
 
   }
   const { cancel, supported, speak, voices } = useSpeechSynthesis({ onEnd })
+  // const getDataToArr = (val) => {
+  //   const maxPos = vocabs.map((itemX) => {
+  //     const ret = itemX.filter((itemY) => itemY.reduce((a, b) => a > b ? a : b))
+  //     return ret
+  //   })
+  // }
 
   useEffect(() => {
     // console.log(textIndex);
@@ -86,11 +94,11 @@ const ShowText = () => {
 
   const startSpeed = () => {
     // setIndex(1)
-    // settextIndex(1)
+    settextIndex(0)
     // setHighlightedText(hiragana[0])
     // setHighlightedVDText(vdjp[0])
     //console.log(hiragana[0]);
-    speak({ text: highlightedText, voices, rate, pitch })
+    speak({ text: hiragana[0], voices, rate, pitch })
   }
   return (
     <Wrapper>
@@ -136,14 +144,15 @@ const ShowText = () => {
           </div>
         </div>
         {/* {numOfPages > 1 && <PageBtnContainer />} */}
-        <button
-          type='button'
-          className='btn delete-btn'
-          onClick={() => startSpeed()}
-        >
-          Start
-        </button>
+
       </header>
+      <button
+        type='button'
+        className='btn delete-btn'
+        onClick={() => startSpeed()}
+      >
+        Start
+      </button>
     </Wrapper>
   );
 };

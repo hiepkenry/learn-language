@@ -11,7 +11,7 @@ const Wrapper = styled.article`
      padding: 2rem 1.5rem;
     border-bottom: 1px solid var(--grey-100);
     display: grid;
-    grid-template-columns: auto 1fr;
+    // grid-template-columns: 1fr 2fr;
     align-items: center;
     h5 {
       letter-spacing: 0;
@@ -83,12 +83,10 @@ const Wrapper = styled.article`
   }
   .content-center {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 2fr;
     row-gap: 0.5rem;
     column-gap: 1rem;
-    @media (min-width: 576px) {
-      grid-template-columns: 1fr 2fr;
-    }
+    
   }
 
   .status {
