@@ -32,8 +32,14 @@ const ShowText = () => {
   const vdvn = vocabs.map((itemX) => {
     return itemX.vdvn
   })
+  const vdta = vocabs.map((itemX) => {
+    return itemX.vden
+  })
   const tiengviet = vocabs.map((itemX) => {
     return itemX.vn
+  })
+  const ta = vocabs.map((itemX) => {
+    return itemX.en
   })
   const imageUrl = vocabs.map((itemX) => {
     return itemX.image
@@ -54,10 +60,13 @@ const ShowText = () => {
 
     // setIndex(index => index + 1)
     // setHighlightedText(hiragana[index])
-    setTimeout(() => {
-      settextIndex(textIndex => textIndex + 1)
+    if (textIndex < vocabs.length - 1) {
+      setTimeout(() => {
+        settextIndex(textIndex => textIndex + 1)
 
-    }, 3000);
+      }, 3000);
+    }
+
 
     // setHighlightedVDText(vdjp[textIndex])
 
@@ -91,61 +100,95 @@ const ShowText = () => {
   //   );
   // }
 
+  var tempMin = textIndex - 2;
+  var tempMax = textIndex + 2;
+  if (textIndex < 2) {
+    tempMin = textIndex
+    tempMax = textIndex + 4
+  }
+  if (textIndex > vocabs.length - 5) {
+    tempMin = vocabs.length - 5;
+  }
+  const newArrVocabLeft = vocabs.filter((kan, id) => tempMin <= id && id <= tempMax);
+  const newArrVocabBottom = vocabs.filter((kan, id) => textIndex - 1 <= id && id <= textIndex + 1);
+
+
+  // const newArrHiragana = hiragana.filter((kan, id) => id < 5);
+  // const newArrTv = tiengviet.filter((kan, id) => id < 5);
 
   const startSpeed = () => {
-    // setIndex(1)
     settextIndex(0)
-    // setHighlightedText(hiragana[0])
-    // setHighlightedVDText(vdjp[0])
-    //console.log(hiragana[0]);
     speak({ text: hiragana[0], voices, rate, pitch })
   }
   return (
     <Wrapper>
-      {/* <h5>
-        {totalVocabs} vocab{vocabs.length > 1 && 's'} found
-      </h5> */}
       <header>
         <div className='info'>
-          <div className='content-center'>
-            {/* <TransText key={1} {...vocabs} /> */}
-            {/* <h1> */}
-            <div className="content-left">
-              {/* <TextTransition springConfig={presets.slow} delay={6000}> */}
-              <h4>{kanji[textIndex]}</h4>
-              {/* </TextTransition> */}
-              {/* <TextTransition springConfig={presets.slow} delay={6000}> */}
-              <p className='hantu'>{hantu[textIndex]}</p>
-              {/* </TextTransition> */}
-              {/* <TextTransition springConfig={presets.slow} delay={6000}> */}
-              <p>{hiragana[textIndex]}</p>
-              {/* </TextTransition> */}
-              {/* <TextTransition springConfig={presets.slow} delay={6000}> */}
-              <p>{tiengviet[textIndex]}</p>
-              {/* </TextTransition> */}
+          <div className='content'>
+            <div className='content-center'>
+              <div className="content-left">
+                <div className="jp">
+                  <h4>{kanji[textIndex]}</h4>
+                  <p className='hantu'>{hantu[textIndex]}</p>
+                  <p>{hiragana[textIndex]}</p>
+
+                </div>
+                <div className="vn">
+
+
+                  <p>{ta[textIndex]}</p>
+                  <p>{tiengviet[textIndex]}</p>
+                </div>
+
+              </div>
+              <div className="content-right">
+                <img src={process.env.PUBLIC_URL + "images/" + imageUrl[textIndex]} />
+              </div>
             </div>
-            <div className="content-right">
-              {/* <TextTransition springConfig={presets.slow} delay={6000}> */}
-              <img src={process.env.PUBLIC_URL + "images/" + imageUrl[textIndex]} />
-              {/* </TextTransition> */}
-              {/* <TextTransition springConfig={presets.slow} delay={6000}> */}
+            <div className="exam">
               <p>{vdjp[textIndex]}</p>
-              {/* </TextTransition> */}
-              {/* <TextTransition springConfig={presets.slow} delay={6000}> */}
               <p>{vdvn[textIndex]}</p>
-              {/* </TextTransition> */}
-
+              <p>{vdta[textIndex]}</p>
             </div>
-
-
-
-
-            {/* </h1> */}
           </div>
         </div>
         {/* {numOfPages > 1 && <PageBtnContainer />} */}
 
       </header>
+      <div className="contentLeft">
+        {
+          newArrVocabLeft.map((kan) => {
+            return (
+              <>
+                <div className="content-text">
+                  <div className="kanji">
+                    <p> {kan.kanji}</p>
+                    <p>{kan.hiragana}</p>
+                  </div>
+                  <p>{kan.vn}</p>
+                </div>
+              </>
+            );
+          })
+        }
+      </div>
+      <div className="contentBottom">
+        {
+          newArrVocabBottom.map((kan) => {
+            return (
+              <>
+                <div className="content-text">
+                  <div className="kanji">
+                    <p> {kan.kanji}</p>
+                    <p>{kan.hiragana}</p>
+                  </div>
+                  <p>{kan.vn}</p>
+                </div>
+              </>
+            );
+          })
+        }
+      </div>
       <button
         type='button'
         className='btn delete-btn'
