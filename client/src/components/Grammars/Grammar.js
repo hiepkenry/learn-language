@@ -42,12 +42,15 @@ const Grammar = ({
   const onEnd = () => {
     setHighlightedText(hiragana)
     setHighlightedVDText(vdjp)
+    setexampJp(false)
+    setvocabJp(false)
+    seteng(false)
   }
 
   const { speak, cancel, speaking, supported, voices } = useSpeechSynthesis({ onEnd })
 
 
-  const voice = voices[6] || null
+  const voice = voices[2] || null
   const voice2 = voices[3] || null
 
   var isAdmin = false;
@@ -66,6 +69,25 @@ const Grammar = ({
   // const setSpeak=()=>{
 
   // }
+
+  // const setSpeak = (texts, flag, vo) => {
+  //   var voi = voice1;
+  //   if (flag == "vd") {
+  //     setexampJp(true);
+  //     voi = voice2;
+  //   }
+  //   if (flag == "kanji") {
+  //     setvocabJp(true)
+  //     voi = voice1;
+  //   }
+  //   if (flag == "english") {
+  //     seteng(true)
+  //     voi = voice1;
+  //   }
+  //   // console.log(voices[1]);
+  //   // console.log(voi);
+  //   speak({ text: texts, voi, rate, pitch })
+  // }
   return (
     <Wrapper>
       <header>
@@ -76,7 +98,7 @@ const Grammar = ({
               <h5>{kanji}
                 {supported &&
                   <div className="speechMenu">
-                    {!speaking
+                    {!vocabJp
                       ? <BsFillVolumeUpFill onClick={() => speak({ text: highlightedText, voice, rate, pitch })} />
                       : <BsFillVolumeOffFill onClick={cancel} />
                     }
@@ -100,7 +122,7 @@ const Grammar = ({
           <div className="jptext">
             {supported &&
               <div className="speechMenu">
-                {!speaking
+                {!exampJp
                   ? <BsFillVolumeUpFill onClick={() => speak({ text: highlightedVDText, voice2, rate, pitch })} />
                   : <BsFillVolumeOffFill onClick={cancel} />
                 }

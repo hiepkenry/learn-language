@@ -28,18 +28,20 @@ const Vocab = ({
   wordLevel,
   createdAt,
   status,
-  curriculum
+  curriculum,
+
 }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((store) => store.user);
+  const { voice, rate, pitch } = useSelector((store) => store.allVocabs);
   const date = moment(createdAt).format('MMM Do, YYYY');
   const [highlightedText, setHighlightedText] = useState(hiragana)
   const [highlightedVDText, setHighlightedVDText] = useState(vdjp)
   const [highlightedEng, sethighlightedEng] = useState(en)
   // const [voice1, setVoice1] = useState(null);highlightedEng
   // const [voice2, setVoice2] = useState(null);
-  const [pitch, setPitch] = useState(1);
-  const [rate, setRate] = useState(1);
+  // const [pitch, setPitch] = useState(1);
+  // const [rate, setRate] = useState(1);
   const [exampJp, setexampJp] = useState(false);
   const [vocabJp, setvocabJp] = useState(false);
   const [eng, seteng] = useState(false);
@@ -58,19 +60,20 @@ const Vocab = ({
 
   // console.log(voices.length);
   // if (voices.length > 0) {
-
+  // console.log(voices[voice]);
   //  }
   // useEffect = (() => {
-  // const voice1 = voices[1] || null;
-  // const voice2 = voices[3] || null;
+  const voice1 = voices[2] || null;
+  const voice2 = voices[3] || null;
 
   // }, [voices])
   // console.log();
-  if (voices.length > 0) {
-    // console.log(voices[2]);
-    var voice1 = voices[1] || null;
-    var voice2 = voices[3] || null;
-  }
+  // if (voices.length > 0) {
+  // console.log(voices[2]);
+  var voiceSelected = voices[voice];
+  // var voice2 = voices[3] || null;
+  // }
+  // console.log(voiceSelected);
   var isAdmin = false;
   if (user.email == "admin@gmail.com") {
     isAdmin = true;
@@ -83,24 +86,25 @@ const Vocab = ({
     }
     return str[0]
   }
+
   //
   const setSpeak = (texts, flag, vo) => {
-    var voices = voice1;
+    var voi = voice1;
     if (flag == "vd") {
       setexampJp(true);
-      voices = voice2;
+      voi = voice2;
     }
     if (flag == "kanji") {
       setvocabJp(true)
-      voices = voice1;
+      voi = voice1;
     }
     if (flag == "english") {
       seteng(true)
-      voices = voice1;
+      voi = voice1;
     }
     // console.log(voices[1]);
-    console.log(voice2);
-    speak({ text: texts, voices, rate, pitch })
+    // console.log(voi);
+    speak({ text: texts, voi, rate, pitch })
   }
   return (
     <Wrapper>

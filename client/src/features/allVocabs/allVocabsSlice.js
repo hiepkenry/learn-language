@@ -11,6 +11,10 @@ const initialFiltersState = {
   searchCurriculum: 'tango',
   sort: 'oldest',
   sortOptions: ['latest', 'oldest', 'a-z', 'z-a'],
+  voice: 0,
+  pitch: 1,
+  rate:1,
+
 };
 
 const initialState = {

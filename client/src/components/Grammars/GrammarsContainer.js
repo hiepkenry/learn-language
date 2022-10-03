@@ -23,7 +23,7 @@ const GrammarsContainer = () => {
   useEffect(() => {
     dispatch(getAllGrammars());
   }, [page, search, searchStatus, searchTitle, searchCurriculum, sort]);
-  console.log(grammars);
+  // console.log(grammars);
   if (isLoading) {
     return <Loading center />;
   }

@@ -82,7 +82,7 @@ const Wrapper = styled.article`
       .content-right {
         text-align: center;
         img{
-          width: 60%;
+          width: 80%;
         }
        }
 

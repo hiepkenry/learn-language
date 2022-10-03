@@ -18,6 +18,7 @@ const VocabsContainer = () => {
     searchTitle,
     searchCurriculum,
     sort,
+    voice,
   } = useSelector((store) => store.allVocabs);
   const dispatch = useDispatch();
 
@@ -35,7 +36,7 @@ const VocabsContainer = () => {
       </Wrapper>
     );
   }
-
+  console.log(voice);
   return (
     <Wrapper>
       <h5>

@@ -14,6 +14,7 @@ const ShowText = () => {
     isLoading,
     page,
     totalVocabs,
+    voice, rate, pitch
 
   } = useSelector((store) => store.allVocabs);
 
@@ -52,8 +53,8 @@ const ShowText = () => {
   const [highlightedEng, sethighlightedEng] = useState("")
   const [index, setIndex] = useState(0);
   const [textIndex, settextIndex] = useState(0);
-  const [pitch, setPitch] = useState(1);
-  const [rate, setRate] = useState(1);
+  // const [pitch, setPitch] = useState(1);
+  // const [rate, setRate] = useState(1);
   const onEnd = () => {
 
     // sethighlightedEng(en[index])
@@ -78,13 +79,13 @@ const ShowText = () => {
   //     return ret
   //   })
   // }
-
+  const voi = voices[voice] || null;
   useEffect(() => {
     // console.log(textIndex);
     // console.log(hiragana[textIndex]);
     // console.log(highlightedText);
     setTimeout(() => {
-      speak({ text: hiragana[textIndex], voices, rate, pitch })
+      speak({ text: hiragana[textIndex], voi, rate, pitch })
     }, 500);
 
   }, [textIndex]);
@@ -118,7 +119,7 @@ const ShowText = () => {
 
   const startSpeed = () => {
     settextIndex(0)
-    speak({ text: hiragana[0], voices, rate, pitch })
+    speak({ text: hiragana[0], voi, rate, pitch })
   }
   return (
     <Wrapper>
@@ -134,8 +135,6 @@ const ShowText = () => {
 
                 </div>
                 <div className="vn">
-
-
                   <p>{ta[textIndex]}</p>
                   <p>{tiengviet[textIndex]}</p>
                 </div>
