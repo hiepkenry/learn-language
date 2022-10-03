@@ -7,14 +7,14 @@ import Loading from '../Loading';
 import { getAllVocabs } from '../../features/allVocabs/allVocabsSlice';
 import PageBtnContainer from '../PageBtnContainer';
 // import TransText from './TransText';
-import TextTransition, { presets } from "react-text-transition";
+// import TextTransition, { presets } from "react-text-transition";
 const ShowText = () => {
   const {
     vocabs,
     isLoading,
     page,
     totalVocabs,
-    voice, rate, pitch
+
 
   } = useSelector((store) => store.allVocabs);
 
@@ -53,53 +53,40 @@ const ShowText = () => {
   const [highlightedEng, sethighlightedEng] = useState("")
   const [index, setIndex] = useState(0);
   const [textIndex, settextIndex] = useState(0);
-  // const [pitch, setPitch] = useState(1);
-  // const [rate, setRate] = useState(1);
+  const [pitch, setPitch] = useState(0.8);
+  const [rate, setRate] = useState(0.8);
+  var indexCount = 0;
   const onEnd = () => {
 
-    // sethighlightedEng(en[index])
-
-    // setIndex(index => index + 1)
-    // setHighlightedText(hiragana[index])
-    if (textIndex < vocabs.length - 1) {
+    if (indexCount == 0) {
       setTimeout(() => {
-        settextIndex(textIndex => textIndex + 1)
-
-      }, 3000);
+        speak({ text: vdjp[textIndex], voice: voices[2], rate, pitch })
+        indexCount = 2
+      }, 500);
     }
+    // console.log(indexCount);
+    if (indexCount == 2) {
+      if (textIndex < vocabs.length - 1) {
+        setTimeout(() => {
+          settextIndex(textIndex => textIndex + 1)
+          indexCount = 0;
+        }, 3000);
 
-
-    // setHighlightedVDText(vdjp[textIndex])
-
+      }
+    }
   }
   const { cancel, supported, speak, voices } = useSpeechSynthesis({ onEnd })
-  // const getDataToArr = (val) => {
-  //   const maxPos = vocabs.map((itemX) => {
-  //     const ret = itemX.filter((itemY) => itemY.reduce((a, b) => a > b ? a : b))
-  //     return ret
-  //   })
-  // }
-  const voi = voices[voice] || null;
   useEffect(() => {
-    // console.log(textIndex);
-    // console.log(hiragana[textIndex]);
-    // console.log(highlightedText);
     setTimeout(() => {
-      speak({ text: hiragana[textIndex], voi, rate, pitch })
+      speak({ text: hiragana[textIndex], voice: voices[3], rate, pitch })
     }, 500);
 
   }, [textIndex]);
+
+
   if (isLoading) {
     return <Navigate to='/tu-vung' />;
   }
-  // if (vocabs.length === 0) {
-  //   return (
-  //     <Wrapper>
-  //       <h2>No data to display...</h2>
-
-  //     </Wrapper>
-  //   );
-  // }
 
   var tempMin = textIndex - 2;
   var tempMax = textIndex + 2;
@@ -107,19 +94,15 @@ const ShowText = () => {
     tempMin = textIndex
     tempMax = textIndex + 4
   }
-  if (textIndex > vocabs.length - 5) {
-    tempMin = vocabs.length - 5;
+  if (textIndex > vocabs.length - 6) {
+    tempMin = vocabs.length - 6;
   }
   const newArrVocabLeft = vocabs.filter((kan, id) => tempMin <= id && id <= tempMax);
   const newArrVocabBottom = vocabs.filter((kan, id) => textIndex - 1 <= id && id <= textIndex + 1);
 
-
-  // const newArrHiragana = hiragana.filter((kan, id) => id < 5);
-  // const newArrTv = tiengviet.filter((kan, id) => id < 5);
-
   const startSpeed = () => {
-    settextIndex(0)
-    speak({ text: hiragana[0], voi, rate, pitch })
+    settextIndex(0);
+    speak({ text: hiragana[0], voice: voices[3], rate, pitch })
   }
   return (
     <Wrapper>
@@ -191,7 +174,7 @@ const ShowText = () => {
       <button
         type='button'
         className='btn delete-btn'
-        onClick={() => startSpeed()}
+        onClick={startSpeed}
       >
         Start
       </button>
