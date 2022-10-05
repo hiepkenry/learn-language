@@ -16,6 +16,8 @@ const AddGrammar = () => {
     hiragana,
     vn,
     en,
+    explain,
+    howtouse,
     vdjp,
     vdvn,
     vden,
@@ -48,6 +50,8 @@ const AddGrammar = () => {
             hiragana,
             vn,
             en,
+            explain,
+            howtouse,
             vdjp,
             vdvn,
             vden,
@@ -65,6 +69,8 @@ const AddGrammar = () => {
       hiragana,
       vn,
       en,
+      explain,
+      howtouse,
       vdjp,
       vden,
       vdvn,
@@ -130,6 +136,22 @@ const AddGrammar = () => {
             name='en'
             labelText='Tiếng Anh'
             value={en}
+            handleChange={handleGrammarInput}
+          />
+          {/* giai thich */}
+          <FormRow
+            type='text'
+            name='explain'
+            labelText='Giải thích'
+            value={explain}
+            handleChange={handleGrammarInput}
+          />
+          {/* Cách dùng */}
+          <FormRow
+            type='text'
+            name='howtouse'
+            labelText='Cách dùng'
+            value={howtouse}
             handleChange={handleGrammarInput}
           />
           {/* Ví Dụ Tiếng Nhật */}

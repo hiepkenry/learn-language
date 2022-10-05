@@ -1,5 +1,5 @@
 
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { BsFillVolumeUpFill, BsFillVolumeOffFill } from "react-icons/bs";
 import { RiEnglishInput } from "react-icons/ri";
 import { FcRating } from "react-icons/fc";
@@ -18,6 +18,8 @@ const Grammar = ({
   hiragana,
   vn,
   en,
+  explain,
+  howtouse,
   vdjp,
   vdvn,
   vden,
@@ -38,7 +40,9 @@ const Grammar = ({
   const [exampJp, setexampJp] = useState(false);
   const [vocabJp, setvocabJp] = useState(false);
   const [eng, seteng] = useState(false);
-
+  var newVdJP = vdjp[0].split(":");
+  var newVdVn = vdvn[0].split(":");
+  var newVdEn = vden[0].split(":");
   const onEnd = () => {
     setHighlightedText(hiragana)
     setHighlightedVDText(vdjp)
@@ -88,6 +92,12 @@ const Grammar = ({
   //   // console.log(voi);
   //   speak({ text: texts, voi, rate, pitch })
   // }
+  // useEffect = (() => {
+  //   setHighlightedVDText(newVdJP);
+  // },[newVdJP])
+
+
+
   return (
     <Wrapper>
       <header>
@@ -111,6 +121,7 @@ const Grammar = ({
             </div>
             <div className="content-right">
               <p>{vn}</p>
+              <p>{howtouse}</p>
               <p>{en}</p>
             </div>
           </div>
@@ -119,21 +130,30 @@ const Grammar = ({
       </header>
       <div className='content'>
         <div className='content-bottom'>
-          <div className="jptext">
-            {supported &&
-              <div className="speechMenu">
-                {!exampJp
-                  ? <BsFillVolumeUpFill onClick={() => speak({ text: highlightedVDText, voice2, rate, pitch })} />
-                  : <BsFillVolumeOffFill onClick={cancel} />
+          {newVdJP.map((val, index) => {
+
+            console.log(val);
+
+            <>
+              <span className="text" dangerouslySetInnerHTML={{ __html: splitMatchedText(val, kanji) }}></span>
+              {/* <div className="jptext">
+                {supported &&
+                  <div className="speechMenu">
+                    {!exampJp
+                      ? <BsFillVolumeUpFill onClick={() => speak({ text: val, voice2, rate, pitch })} />
+                      : <BsFillVolumeOffFill onClick={cancel} />
+                    }
+
+                  </div>
                 }
-                {/* <SettingsOutlined onClick={() => setShowSpeechSettings(true)}/> */}
-              </div>
-            }
-            {/* <JobInfo text={vdjp} /> */}
-            <span className="text" dangerouslySetInnerHTML={{ __html: splitMatchedText(vdjp, kanji) }}></span>
-          </div>
-          <JobInfo icon={<FcRating />} text={vdvn} />
-          <JobInfo icon={<RiEnglishInput />} text={vden} />
+
+                <span className="text" dangerouslySetInnerHTML={{ __html: splitMatchedText(val, kanji) }}></span>
+              </div> */}
+              {/* <JobInfo icon={<FcRating />} text={newVdVn[index]} /> */}
+              {/* <JobInfo icon={<RiEnglishInput />} text={newVdEn[index]} /> */}
+            </>
+          })}
+
         </div>
         {isAdmin && (<footer>
           <div className='actions'>
@@ -149,6 +169,8 @@ const Grammar = ({
                     hiragana,
                     vn,
                     en,
+                    explain,
+                    howtouse,
                     vdjp,
                     vdvn,
                     vden,

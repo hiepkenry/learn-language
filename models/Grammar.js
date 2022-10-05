@@ -18,10 +18,23 @@ const GrammarSchema = new mongoose.Schema(
       required: [true, 'Please provide vietnamese'],
       maxlength: 100,
     },
+
     en: {
       type: String,
-      required: [true, 'Please provide engliah'],
+      // required: [true, 'Please provide engliah'],
       maxlength: 100,
+    },
+    explain: {
+      type: String,
+      required: [true, 'Please provide vietnamese'],
+      maxlength: 300,
+
+    },
+    howtouse: {
+      type: String,
+      required: [true, 'Please provide vietnamese'],
+      maxlength: 300,
+
     },
     vdjp: {
       type: [String],
@@ -33,13 +46,14 @@ const GrammarSchema = new mongoose.Schema(
     },
     vden: {
       type: [String],
-      required: true,
+      // required: true,
     },
     chude: {
       type: String,
-      enum: ["人と人の関係", "暮らし", "家", "学校", "会社", "私の町", "健康", "お気に入り", "世界", "自然", "ニュース", "様子", "その他"],
-      default: '人と人の関係',
+      enum: ["時間関係", "範囲の始まり・限度", "限定・日限定・付加", "例示", "関連・無関係", "様子", "付随行動", "逆接", "条件", "逆接条件", "目的・手段", "原因・理由", "可能・不可能・禁止", "話題・評価の基準", "比較対照", "結末・最終の状態", "強調", "主張・断定", "評価・感想", "心情・強制的思う"],
+      default: '時間関係',
     },
+
     grammarLevel: {
       type: String,
       enum: ['n1', 'n2', 'n3', 'n4', 'n4'],
