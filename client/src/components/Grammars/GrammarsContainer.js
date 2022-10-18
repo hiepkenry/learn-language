@@ -13,6 +13,7 @@ const GrammarsContainer = () => {
     totalGrammars,
     numOfPages,
     search,
+    searchType,
     searchStatus,
     searchTitle,
     searchCurriculum,
@@ -22,7 +23,7 @@ const GrammarsContainer = () => {
 
   useEffect(() => {
     dispatch(getAllGrammars());
-  }, [page, search, searchStatus, searchTitle, searchCurriculum, sort]);
+  }, [page, search, searchStatus, searchTitle, searchType, searchCurriculum, sort]);
   // console.log(grammars);
   if (isLoading) {
     return <Loading center />;
@@ -42,7 +43,7 @@ const GrammarsContainer = () => {
       </h5>
       <div className='jobs'>
         {grammars.map((grammar) => {
-          
+
           return <Grammar key={grammars._id} {...grammar} />;
         })}
       </div>

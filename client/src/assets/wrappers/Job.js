@@ -85,6 +85,25 @@ const Wrapper = styled.article`
     @media (min-width: 576px) {
       grid-template-columns: 1fr 2fr;
     }
+    .content-right{
+      .text-color{
+        color:var(--red-dark);
+      }
+    }
+  }
+  .content-center-grammar{
+     display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 0.5rem;
+    column-gap: 1rem;
+    @media (min-width: 576px) {
+      grid-template-columns: 1fr 1.5fr;
+    }
+    .content-right{
+      .text-color{
+        color:var(--red-dark);
+      }
+    }
   }
 
   .status {

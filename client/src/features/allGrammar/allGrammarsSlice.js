@@ -7,7 +7,7 @@ const initialFiltersState = {
   searchStatus: 'public',
   searchLevel: 'N1',
   searchTitle: 'all',
-  searchCurriculum: 'mimikara',
+  searchCurriculum: 'shinkanzen',
   sort: 'oldest',
   sortOptions: ['latest', 'oldest', 'a-z', 'z-a'],
 };

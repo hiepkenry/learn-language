@@ -6,34 +6,34 @@ const GrammarSchema = new mongoose.Schema(
     kanji: {
       type: String,
       required: [true, 'Please provide kanji'],
-      maxlength: 50,
+      maxlength: 100,
     },
     hiragana: {
       type: String,
-      required: [true, 'Please provide hỉagana'],
-      maxlength: 50,
+      // required: [true, 'Please provide hỉagana'],
+      maxlength: 100,
     },
     vn: {
       type: String,
       required: [true, 'Please provide vietnamese'],
-      maxlength: 100,
+      maxlength: 200,
     },
 
     en: {
       type: String,
       // required: [true, 'Please provide engliah'],
-      maxlength: 100,
+      maxlength: 200,
     },
     explain: {
       type: String,
       required: [true, 'Please provide vietnamese'],
-      maxlength: 300,
+      maxlength: 500,
 
     },
     howtouse: {
       type: String,
       required: [true, 'Please provide vietnamese'],
-      maxlength: 300,
+      maxlength: 500,
 
     },
     vdjp: {
@@ -66,8 +66,8 @@ const GrammarSchema = new mongoose.Schema(
     },
     curriculum: {
       type: String,
-      enum: ['tango', 'mimikara', 'kikutan', 'try', 'somatome'],
-      default: 'tango',
+      enum: ['shinkanzen', 'mimikara', 'speedMaster', 'try', 'somatome'],
+      default: 'shinkanzen',
     },
     createdBy: {
       type: mongoose.Types.ObjectId,

@@ -14,6 +14,7 @@ import {
   AddGrammar,
   AllGrammars,
   LearnVocabs,
+  LearnGrammar,
 } from './pages/dashboard';
 // import ShowText from './components/Learning/ShowText';
 
@@ -33,7 +34,8 @@ function App() {
           <Route path='tu-vung' element={<Vocabs />} >
 
           </Route>
-          <Route path='shadowing' element={<LearnVocabs />} />
+          <Route path='tu-vung/shadowing' element={<LearnVocabs />} />
+          <Route path='ngu-phap/shadowing' element={<LearnGrammar />} />
           <Route path='ngu-phap' element={<AllGrammars />}>
 
           </Route>

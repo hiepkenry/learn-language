@@ -103,7 +103,7 @@ const Grammar = ({
       <header>
         {/* <div className='main-icon'>{hiragana.charAt(0)}</div> */}
         <div className='info'>
-          <div className='content-center'>
+          <div className='content-center-grammar'>
             <div className="content-left">
               <h5>{kanji}
                 {supported &&
@@ -116,11 +116,11 @@ const Grammar = ({
                   </div>
                 }
               </h5>
-              <p>{hiragana}</p>
+              <p> {hiragana}</p>
 
             </div>
             <div className="content-right">
-              <p>{vn}</p>
+              <p className="text-color" >{vn}</p>
               <p>{howtouse}</p>
               <p>{en}</p>
             </div>
@@ -130,13 +130,11 @@ const Grammar = ({
       </header>
       <div className='content'>
         <div className='content-bottom'>
-          {newVdJP.map((val, index) => {
-
-            console.log(val);
-
-            <>
-              <span className="text" dangerouslySetInnerHTML={{ __html: splitMatchedText(val, kanji) }}></span>
-              {/* <div className="jptext">
+          <p>Giải thích: {explain}</p>
+          {/* {newVdJP.map((val, index) => {
+            return (
+              <>
+               <div className="jptext">
                 {supported &&
                   <div className="speechMenu">
                     {!exampJp
@@ -148,11 +146,12 @@ const Grammar = ({
                 }
 
                 <span className="text" dangerouslySetInnerHTML={{ __html: splitMatchedText(val, kanji) }}></span>
-              </div> */}
-              {/* <JobInfo icon={<FcRating />} text={newVdVn[index]} /> */}
-              {/* <JobInfo icon={<RiEnglishInput />} text={newVdEn[index]} /> */}
-            </>
-          })}
+              </div>
+              <JobInfo icon={<FcRating />} text={newVdVn[index]} />
+                <JobInfo icon={<RiEnglishInput />} text={newVdEn[index]} />
+              </>
+         )
+          })} */}
 
         </div>
         {isAdmin && (<footer>

@@ -131,16 +131,8 @@ const Vocab = ({
 
             </div>
             <div className="content-right">
-              <p>{vn}</p>
-              <p>{supported &&
-                <div className="speechMenu">
-                  {!eng
-                    ? <BsFillVolumeUpFill onClick={() => setSpeak(highlightedEng, "english")} />
-                    : <BsFillVolumeOffFill onClick={cancel} />
-                  }
-                  {/* <SettingsOutlined onClick={() => setShowSpeechSettings(true)}/> */}
-                </div>
-              }{en}</p>
+              <p className="text-color">{vn}</p>
+              <p>{en}</p>
             </div>
           </div>
         </div>

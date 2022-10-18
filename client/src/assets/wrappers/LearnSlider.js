@@ -59,7 +59,7 @@ const Wrapper = styled.article`
      }
     .content-center {
       display: grid;
-      grid-template-columns: 2fr 1fr;
+      grid-template-columns:1fr;
       row-gap: 0.5rem;
       column-gap: 1rem;
       padding: 1rem;
@@ -77,6 +77,9 @@ const Wrapper = styled.article`
             font-size: 3vw;
             color: green;
           }
+          .text-color{
+          color:var(--red-dark);
+        }
 
         }
       .content-right {
@@ -87,13 +90,18 @@ const Wrapper = styled.article`
        }
 
     }
-    .exam {
-      border-top: solid;
-      padding: 1rem;
+    .exam-content{
+      padding-top: 1rem;
+       .exam {
+      /* border-top: solid; */
+      padding: 0.4rem;
       p{
-        font-size: 1.5vw;
+        font-size: 1vw;
+        max-width: 100% !important;
       }
     }
+    }
+
   }
 
   }

@@ -2,7 +2,7 @@ import { FormRow, FormRowSelect } from '..';
 import Wrapper from '../../assets/wrappers/SearchVocabs';
 import { useSelector, useDispatch } from 'react-redux';
 import { handleChange, clearFilters } from '../../features/allGrammar/allGrammarsSlice';
-
+import { Link } from 'react-router-dom';
 const SearchGrammars = () => {
   const { isLoading, search,
     searchTitle,
@@ -72,6 +72,12 @@ const SearchGrammars = () => {
           >
             clear filters
           </button>
+          <Link
+            to='/ngu-phap/shadowing'
+            className='btn edit-btn'
+          >
+            hoc
+          </Link>
         </div>
       </form>
     </Wrapper>

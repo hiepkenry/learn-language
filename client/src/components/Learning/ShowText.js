@@ -14,6 +14,9 @@ const ShowText = () => {
     isLoading,
     page,
     totalVocabs,
+    voice,
+    rate,
+    pitch
 
 
   } = useSelector((store) => store.allVocabs);
@@ -53,14 +56,14 @@ const ShowText = () => {
   const [highlightedEng, sethighlightedEng] = useState("")
   const [index, setIndex] = useState(0);
   const [textIndex, settextIndex] = useState(0);
-  const [pitch, setPitch] = useState(0.8);
-  const [rate, setRate] = useState(0.8);
+  // const [pitch, setPitch] = useState(0.8);
+  // const [rate, setRate] = useState(0.8);
   var indexCount = 0;
   const onEnd = () => {
 
     if (indexCount == 0) {
       setTimeout(() => {
-        speak({ text: vdjp[textIndex], voice: voices[2], rate, pitch })
+        speak({ text: vdjp[textIndex], voice: voices[voice], rate, pitch })
         indexCount = 2
       }, 500);
     }
@@ -78,7 +81,7 @@ const ShowText = () => {
   const { cancel, supported, speak, voices } = useSpeechSynthesis({ onEnd })
   useEffect(() => {
     setTimeout(() => {
-      speak({ text: hiragana[textIndex], voice: voices[3], rate, pitch })
+      speak({ text: hiragana[textIndex], voice: voices[0], rate, pitch })
     }, 500);
 
   }, [textIndex]);
@@ -102,7 +105,7 @@ const ShowText = () => {
 
   const startSpeed = () => {
     settextIndex(0);
-    speak({ text: hiragana[0], voice: voices[3], rate, pitch })
+    speak({ text: hiragana[0], voice: voices[0], rate, pitch })
   }
   return (
     <Wrapper>

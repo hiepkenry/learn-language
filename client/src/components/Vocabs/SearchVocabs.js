@@ -103,7 +103,7 @@ const SearchVocabs = () => {
             cài đặt Giọng đọc
           </button>
           <Link
-            to='/shadowing'
+            to='/tu-vung/shadowing'
             className='btn edit-btn'
           >
             hoc
