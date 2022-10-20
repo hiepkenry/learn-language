@@ -1,18 +1,19 @@
-const Grammar = require('../models/Grammar');
+const Kanji = require('../models/Kanji');
 const { StatusCodes } = require('http-status-codes');
 const { BadRequestError, NotFoundError } = require('../errors');
 const mongoose = require('mongoose');
 const moment = require('moment');
 
-const getAllGrammars = async (req, res) => {
-  const { search, status, chude, searchLevel, sort, curriculum } = req.query;
+
+const getAllKanjis = async (req, res) => {
+  const { search, status, chude, searchLevel, sort } = req.query;
 
   const queryObject = {
     // createdBy: req.user.userId,
   };
 
   if (search) {
-    queryObject.hiragana = { $regex: search, $options: 'i' };
+    queryObject.bo = { $regex: search, $options: 'i' };
   }
   if (status && status !== 'all') {
     queryObject.status = status;
@@ -23,10 +24,8 @@ const getAllGrammars = async (req, res) => {
   if (searchLevel && searchLevel !== 'all') {
     queryObject.searchLevel = searchLevel;
   }
-  if (curriculum && curriculum !== 'all') {
-    queryObject.curriculum = curriculum;
-  }
-  let result = Grammar.find(queryObject);
+
+  let result = Kanji.find(queryObject);
 
   if (sort === 'latest') {
     result = result.sort('-createdAt');
@@ -47,68 +46,68 @@ const getAllGrammars = async (req, res) => {
 
   result = result.skip(skip).limit(limit);
 
-  const grammars = await result;
+  const Kanjis = await result;
 
-  const totalGrammars = await Grammar.countDocuments(queryObject);
-  const numOfPages = Math.ceil(totalGrammars / limit);
+  const totalKanjis = await Kanji.countDocuments(queryObject);
+  const numOfPages = Math.ceil(totalKanjis / limit);
 
-  res.status(StatusCodes.OK).json({ grammars, numOfPages, totalGrammars });
+  res.status(StatusCodes.OK).json({ Kanjis, numOfPages, totalKanjis });
 };
-const getGrammar = async (req, res) => {
+const getKanji = async (req, res) => {
   const {
     user: { userId },
-    params: { id: grammarId },
+    params: { id: KanjiId },
   } = req;
 
-  const grammar = await Grammar.findOne({
-    _id: grammarId,
+  const Kanji = await Kanji.findOne({
+    _id: KanjiId,
     createdBy: userId,
   });
-  if (!grammar) {
-    throw new NotFoundError(`No job with id ${grammarId}`);
+  if (!Kanji) {
+    throw new NotFoundError(`No Kanji with id ${KanjiId}`);
   }
-  res.status(StatusCodes.OK).json({ grammar });
+  res.status(StatusCodes.OK).json({ Kanji });
 };
 
-const createGrammar = async (req, res) => {
+const createKanji = async (req, res) => {
   req.body.createdBy = req.user.userId;
-  const grammar = await Grammar.create(req.body);
-  res.status(StatusCodes.CREATED).json({ grammar });
+  const Kanji = await Kanji.create(req.body);
+  res.status(StatusCodes.CREATED).json({ Kanji });
 };
 
-const updateGrammar = async (req, res) => {
+const updateKanji = async (req, res) => {
   const {
-    body: { kanji, hiragana, vn, },
+    body: { kanji, bo, amhan, },
     user: { userId },
-    params: { id: grammarId },
+    params: { id: KanjiId },
   } = req;
 
-  if (kanji === '' || hiragana === '' || vn === '') {
-    throw new BadRequestError('kanji or hiragana fields cannot be empty');
+  if (kanji === '' || bo === '' || amhan === '') {
+    throw new BadRequestError('kanji or bo fields cannot be empty');
   }
-  const grammar = await Grammar.findByIdAndUpdate(
-    { _id: grammarId, createdBy: userId },
+  const Kanji = await Kanji.findByIdAndUpdate(
+    { _id: KanjiId, createdBy: userId },
     req.body,
     { new: true, runValidators: true }
   );
-  if (!grammar) {
-    throw new NotFoundError(`No job with id ${grammarId}`);
+  if (!Kanji) {
+    throw new NotFoundError(`No Kanji with id ${KanjiId}`);
   }
-  res.status(StatusCodes.OK).json({ grammar });
+  res.status(StatusCodes.OK).json({ Kanji });
 };
 
-const deleteGrammar = async (req, res) => {
+const deleteKanji = async (req, res) => {
   const {
     user: { userId },
-    params: { id: grammarId },
+    params: { id: KanjiId },
   } = req;
 
-  const grammar = await Grammar.findByIdAndRemove({
-    _id: grammarId,
+  const Kanji = await Kanji.findByIdAndRemove({
+    _id: KanjiId,
     createdBy: userId,
   });
-  if (!grammar) {
-    throw new NotFoundError(`No job with id ${grammarId}`);
+  if (!Kanji) {
+    throw new NotFoundError(`No job with id ${KanjiId}`);
   }
   res.status(StatusCodes.OK).send();
 };
@@ -159,10 +158,10 @@ const deleteGrammar = async (req, res) => {
 // };
 
 module.exports = {
-  createGrammar,
-  deleteGrammar,
-  getAllGrammars,
-  updateGrammar,
-  getGrammar,
+  createKanji,
+  deleteKanji,
+  getAllKanjis,
+  updateKanji,
+  getKanji,
   // showStats,
 };

@@ -15,6 +15,7 @@ const authenticateUser = require('./middleware/authentication');
 const authRouter = require('./routes/auth');
 const vocabsRouter = require('./routes/vocabs');
 const grammarsRouter = require('./routes/grammars');
+const kanjisRouter = require('./routes/kanjis');
 // error handler
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
@@ -31,6 +32,7 @@ app.use(xss());
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/vocabs', authenticateUser, vocabsRouter);
 app.use('/api/v1/grammars', authenticateUser, grammarsRouter);
+app.use('/api/v1/kanjis', authenticateUser, kanjisRouter);
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, './client/build', 'index.html'));

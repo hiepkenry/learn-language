@@ -10,7 +10,9 @@ const links = [
   { id: 4, text: 'Thêm Ngữ Pháp', path: 'add-grammar', icon: <FaWpforms /> },
   { id: 4, text: 'add Vocab', path: 'add-vocab', icon: <FaWpforms /> },
   { id: 5, text: 'All Vocab', path: 'all-vocab', icon: <FaWpforms /> },
-  { id: 6, text: 'profile', path: 'profile', icon: <ImProfile /> },
+  { id: 6, text: 'add Kanji', path: 'add-kanji', icon: <FaWpforms /> },
+  { id: 7, text: 'All Kanji', path: 'all-kanji', icon: <FaWpforms /> },
+  { id: 8, text: 'profile', path: 'profile', icon: <ImProfile /> },
 ];
 
 export default links;

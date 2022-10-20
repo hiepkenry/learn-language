@@ -1,21 +1,20 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { getAllGrammarsThunk } from './allGrammarsThunk';
+import { getAllKanjisThunk } from './allKanjisThunk';
 
 const initialFiltersState = {
   search: '',
   searchStatus: 'public',
   searchLevel: 'N1',
-  searchTitle: 'all',
-  searchCurriculum: 'shinkanzen',
+  searchNet: '2',
   sort: 'oldest',
   sortOptions: ['latest', 'oldest', 'a-z', 'z-a'],
 };
 
 const initialState = {
   isLoading: true,
-  grammars: [],
-  totalGrammar: 0,
+  kanjis: [],
+  totalKanji: 0,
   numOfPages: 1,
   page: 1,
   stats: {},
@@ -23,11 +22,11 @@ const initialState = {
   ...initialFiltersState,
 };
 
-export const getAllGrammars = createAsyncThunk('allGrammar/getGrammar', getAllGrammarsThunk);
+export const getAllKanjis = createAsyncThunk('allKanji/getKanji', getAllKanjisThunk);
 // export const showStats = createAsyncThunk('allGrammar/getStats', showStatsThunk);
 
-const allGrammarsSlice = createSlice({
-  name: 'allGrammar',
+const allKanjisSlice = createSlice({
+  name: 'allKanji',
   initialState,
   reducers: {
     showLoading: (state) => {
@@ -46,20 +45,20 @@ const allGrammarsSlice = createSlice({
     changePage: (state, { payload }) => {
       state.page = payload;
     },
-    clearAllGrammarsState: (state) => initialState,
+    clearAllKanjisState: (state) => initialState,
   },
   extraReducers: {
 
-    [getAllGrammars.pending]: (state) => {
+    [getAllKanjis.pending]: (state) => {
       state.isLoading = true;
     },
-    [getAllGrammars.fulfilled]: (state, { payload }) => {
+    [getAllKanjis.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
-      state.grammars = payload.grammars;
+      state.kanjis = payload.kanjis;
       state.numOfPages = payload.numOfPages;
-      state.totalGrammar = payload.totalGrammars;
+      state.totalKanji = payload.totalKanjis;
     },
-    [getAllGrammars.rejected]: (state, { payload }) => {
+    [getAllKanjis.rejected]: (state, { payload }) => {
 
       state.isLoading = false;
       toast.error(payload);
@@ -87,7 +86,7 @@ export const {
   handleChange,
   clearFilters,
   changePage,
-  clearAllGrammarsState,
-} = allGrammarsSlice.actions;
+  clearAllKanjisState,
+} = allKanjisSlice.actions;
 
-export default allGrammarsSlice.reducer;
+export default allKanjisSlice.reducer;
