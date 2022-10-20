@@ -53,6 +53,7 @@ const allKanjisSlice = createSlice({
       state.isLoading = true;
     },
     [getAllKanjis.fulfilled]: (state, { payload }) => {
+      console.log("kanji");
       state.isLoading = false;
       state.kanjis = payload.kanjis;
       state.numOfPages = payload.numOfPages;

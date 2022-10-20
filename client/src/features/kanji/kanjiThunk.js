@@ -15,7 +15,7 @@ export const deleteKanjiThunk = async (kanjiId, thunkAPI) => {
   thunkAPI.dispatch(showLoading());
   try {
     const resp = await customFetch.delete(`/kanjis/${kanjiId}`);
-    thunkAPI.dispatch(getAllKanjis());
+    // thunkAPI.dispatch(getAllKanjis());
     return resp.data.msg;
   } catch (error) {
     thunkAPI.dispatch(hideLoading());

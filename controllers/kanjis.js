@@ -46,68 +46,68 @@ const getAllKanjis = async (req, res) => {
 
   result = result.skip(skip).limit(limit);
 
-  const Kanjis = await result;
+  const kanjis = await result;
 
   const totalKanjis = await Kanji.countDocuments(queryObject);
   const numOfPages = Math.ceil(totalKanjis / limit);
 
-  res.status(StatusCodes.OK).json({ Kanjis, numOfPages, totalKanjis });
+  res.status(StatusCodes.OK).json({ kanjis, numOfPages, totalKanjis });
 };
 const getKanji = async (req, res) => {
   const {
     user: { userId },
-    params: { id: KanjiId },
+    params: { id: kanjiId },
   } = req;
 
-  const Kanji = await Kanji.findOne({
-    _id: KanjiId,
+  const kanji = await Kanji.findOne({
+    _id: kanjiId,
     createdBy: userId,
   });
-  if (!Kanji) {
-    throw new NotFoundError(`No Kanji with id ${KanjiId}`);
+  if (!kanji) {
+    throw new NotFoundError(`No Kanji with id ${kanjiId}`);
   }
-  res.status(StatusCodes.OK).json({ Kanji });
+  res.status(StatusCodes.OK).json({ kanji });
 };
 
 const createKanji = async (req, res) => {
   req.body.createdBy = req.user.userId;
-  const Kanji = await Kanji.create(req.body);
-  res.status(StatusCodes.CREATED).json({ Kanji });
+  const kanji = await Kanji.create(req.body);
+  res.status(StatusCodes.CREATED).json({ kanji });
 };
 
 const updateKanji = async (req, res) => {
   const {
     body: { kanji, bo, amhan, },
     user: { userId },
-    params: { id: KanjiId },
+    params: { id: kanjiId },
   } = req;
 
   if (kanji === '' || bo === '' || amhan === '') {
     throw new BadRequestError('kanji or bo fields cannot be empty');
   }
-  const Kanji = await Kanji.findByIdAndUpdate(
-    { _id: KanjiId, createdBy: userId },
+  const kanjis = await Kanji.findByIdAndUpdate(
+    { _id: kanjiId, createdBy: userId },
     req.body,
     { new: true, runValidators: true }
   );
-  if (!Kanji) {
-    throw new NotFoundError(`No Kanji with id ${KanjiId}`);
+  if (!kanjis) {
+    throw new NotFoundError(`No Kanji with id ${kanjiId}`);
   }
-  res.status(StatusCodes.OK).json({ Kanji });
+  res.status(StatusCodes.OK).json({ kanjis });
 };
 
 const deleteKanji = async (req, res) => {
   const {
     user: { userId },
-    params: { id: KanjiId },
+    params: { id: kanjiId },
   } = req;
 
-  const Kanji = await Kanji.findByIdAndRemove({
-    _id: KanjiId,
+  const kanji = await Kanji.findByIdAndRemove({
+    _id: kanjiId,
     createdBy: userId,
   });
-  if (!Kanji) {
-    throw new NotFoundError(`No job with id ${KanjiId}`);
+  if (!kanji) {
+    throw new NotFoundError(`No job with id ${kanjiId}`);
   }
   res.status(StatusCodes.OK).send();
 };

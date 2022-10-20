@@ -9,7 +9,7 @@ const {
   updateKanji,
   getKanji,
   showStats,
-} = require('../controllers/Kanjis');
+} = require('../controllers/kanjis');
 
 router.route('/').post(testUser, createKanji).get(getAllKanjis);
 // router.route('/stats').get(showStats);

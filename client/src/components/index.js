@@ -13,6 +13,9 @@ import SearchGrammars from './Grammars/SearchGrammars';
 import GrammarsContainer from './Grammars/GrammarsContainer';
 import ShowText from './Learning/ShowText';
 import ShowGrammar from './Learning/showGrammar';
+import KanjisContainer from './Kanji/KanjisContainer';
+import SearchKanjis from './Kanji/SearchKanjis';
+
 
 export {
   Logo,
@@ -30,4 +33,6 @@ export {
   GrammarsContainer,
   ShowText,
   ShowGrammar,
+  KanjisContainer,
+  SearchKanjis
 };
