@@ -43,13 +43,13 @@ const KanjiSchema = new mongoose.Schema(
     chude: {
       type: String,
       enum: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '10以上'],
-      default: '2',
+      default: '1',
     },
 
     kanjiLevel: {
       type: String,
-      enum: ['n1', 'n2', 'n3', 'n4', 'n4'],
-      default: 'n1',
+      enum: ['n1', 'n2', 'n3', 'n4', 'n5'],
+      default: 'n5',
     },
     status: {
       type: String,

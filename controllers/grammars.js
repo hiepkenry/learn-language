@@ -21,7 +21,7 @@ const getAllGrammars = async (req, res) => {
     queryObject.chude = chude;
   }
   if (searchLevel && searchLevel !== 'all') {
-    queryObject.searchLevel = searchLevel;
+    queryObject.grammarLevel = searchLevel;
   }
   if (curriculum && curriculum !== 'all') {
     queryObject.curriculum = curriculum;

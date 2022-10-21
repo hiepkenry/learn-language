@@ -6,7 +6,7 @@ const initialFiltersState = {
   search: '',
   searchStatus: 'public',
   searchType: 'all',
-  searchLevel: 'N1',
+  searchLevel: 'n1',
   searchTitle: 'all',
   searchCurriculum: 'tango',
   sort: 'oldest',

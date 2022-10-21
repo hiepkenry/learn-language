@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const moment = require('moment');
 
 const getAllVocabs = async (req, res) => {
-  const { search, status, wordType, chude, sort, curriculum } = req.query;
+  const { search, status, wordType, searchLevel, chude, sort, curriculum } = req.query;
 
   const queryObject = {
     // createdBy: req.user.userId,
@@ -22,6 +22,9 @@ const getAllVocabs = async (req, res) => {
   }
   if (chude && chude !== 'all') {
     queryObject.chude = chude;
+  }
+  if (searchLevel && searchLevel !== 'all') {
+    queryObject.wordLevel = searchLevel;
   }
   if (curriculum && curriculum !== 'all') {
     queryObject.curriculum = curriculum;

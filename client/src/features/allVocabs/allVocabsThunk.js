@@ -1,10 +1,10 @@
 import customFetch, { checkForUnauthorizedResponse } from '../../utils/axios';
 
 export const getAllVocabsThunk = async (_, thunkAPI) => {
-  const { page, search, searchStatus, searchType, sort, searchTitle, searchCurriculum } =
+  const { page, search, searchStatus, searchType, sort, searchLevel, searchTitle, searchCurriculum } =
     thunkAPI.getState().allVocabs;
 
-  let url = `/vocabs?status=${searchStatus}&wordType=${searchType}&chude=${searchTitle}&curriculum=${searchCurriculum}&sort=${sort}&page=${page}`;
+  let url = `/vocabs?status=${searchStatus}&wordType=${searchType}&chude=${searchTitle}&searchLevel=${searchLevel}&curriculum=${searchCurriculum}&sort=${sort}&page=${page}`;
   if (search) {
     url = url + `&search=${search}`;
   }

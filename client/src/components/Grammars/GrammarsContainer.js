@@ -16,6 +16,7 @@ const GrammarsContainer = () => {
     searchType,
     searchStatus,
     searchTitle,
+    searchLevel,
     searchCurriculum,
     sort,
   } = useSelector((store) => store.allGrammars);
@@ -23,7 +24,7 @@ const GrammarsContainer = () => {
 
   useEffect(() => {
     dispatch(getAllGrammars());
-  }, [page, search, searchStatus, searchTitle, searchType, searchCurriculum, sort]);
+  }, [page, search, searchStatus, searchLevel, searchTitle, searchType, searchCurriculum, sort]);
   // console.log(grammars);
   if (isLoading) {
     return <Loading center />;

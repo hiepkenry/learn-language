@@ -12,7 +12,7 @@ const initialState = {
   nghia:'giải thích',
   bo:'Bộ',
   chudeOptions:['1','2', '3','4','5', '6','7', '8', '9','10', '10以上'],
-  chude: '2',
+  chude: '1',
   kanjiLevelOptions: ['n1', 'n2', 'n3', 'n4', 'n5'],
   kanjiLevel:'n1',
   statusOptions: ['public', 'private'],

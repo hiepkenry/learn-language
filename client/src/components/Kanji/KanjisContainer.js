@@ -11,7 +11,7 @@ const KanjisContainer = () => {
     kanjis,
     isLoading,
     page,
-    totalKanjis,
+    totalKanji,
     numOfPages,
     search,
     searchLevel,
@@ -23,7 +23,6 @@ const KanjisContainer = () => {
   useEffect(() => {
     dispatch(getAllKanjis());
   }, [page, search, searchNet, searchLevel, sort]);
-  // console.log(grammars);
   if (isLoading) {
     return <Loading center />;
   }
@@ -38,7 +37,7 @@ const KanjisContainer = () => {
   return (
     <Wrapper>
       <h5>
-        {totalKanjis} vocab{kanjis.length > 1 && 's'} found
+        {totalKanji} vocab{kanjis.length > 1 && 's'} found
       </h5>
       <div className='jobs'>
         {kanjis.map((kanji) => {

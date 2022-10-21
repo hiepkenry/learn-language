@@ -5,7 +5,7 @@ import { getAllGrammarsThunk } from './allGrammarsThunk';
 const initialFiltersState = {
   search: '',
   searchStatus: 'public',
-  searchLevel: 'N1',
+  searchLevel: 'n1',
   searchTitle: 'all',
   searchCurriculum: 'shinkanzen',
   sort: 'oldest',

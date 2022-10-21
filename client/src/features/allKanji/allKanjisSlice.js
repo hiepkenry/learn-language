@@ -5,8 +5,8 @@ import { getAllKanjisThunk } from './allKanjisThunk';
 const initialFiltersState = {
   search: '',
   searchStatus: 'public',
-  searchLevel: 'N1',
-  searchNet: '2',
+  searchLevel: 'n5',
+  searchNet: 'all',
   sort: 'oldest',
   sortOptions: ['latest', 'oldest', 'a-z', 'z-a'],
 };
@@ -14,7 +14,7 @@ const initialFiltersState = {
 const initialState = {
   isLoading: true,
   kanjis: [],
-  totalKanji: 0,
+  totalKanjis: 0,
   numOfPages: 1,
   page: 1,
   stats: {},
@@ -24,7 +24,6 @@ const initialState = {
 
 export const getAllKanjis = createAsyncThunk('allKanji/getKanji', getAllKanjisThunk);
 // export const showStats = createAsyncThunk('allGrammar/getStats', showStatsThunk);
-
 const allKanjisSlice = createSlice({
   name: 'allKanji',
   initialState,
@@ -53,11 +52,10 @@ const allKanjisSlice = createSlice({
       state.isLoading = true;
     },
     [getAllKanjis.fulfilled]: (state, { payload }) => {
-      console.log("kanji");
       state.isLoading = false;
       state.kanjis = payload.kanjis;
       state.numOfPages = payload.numOfPages;
-      state.totalKanji = payload.totalKanjis;
+      state.totalkanji = payload.totalKanjis;
     },
     [getAllKanjis.rejected]: (state, { payload }) => {
 

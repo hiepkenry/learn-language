@@ -11,7 +11,6 @@ const getAllKanjis = async (req, res) => {
   const queryObject = {
     // createdBy: req.user.userId,
   };
-
   if (search) {
     queryObject.bo = { $regex: search, $options: 'i' };
   }
@@ -22,7 +21,7 @@ const getAllKanjis = async (req, res) => {
     queryObject.chude = chude;
   }
   if (searchLevel && searchLevel !== 'all') {
-    queryObject.searchLevel = searchLevel;
+    queryObject.kanjiLevel = searchLevel;
   }
 
   let result = Kanji.find(queryObject);

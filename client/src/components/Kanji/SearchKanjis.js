@@ -1,7 +1,7 @@
 import { FormRow, FormRowSelect } from '..';
 import Wrapper from '../../assets/wrappers/SearchVocabs';
 import { useSelector, useDispatch } from 'react-redux';
-import { handleChange, clearFilters } from '../../features/allGrammar/allGrammarsSlice';
+import { handleChange, clearFilters } from '../../features/allKanji/allKanjisSlice';
 import { Link } from 'react-router-dom';
 const SearchKanjis = () => {
   const { isLoading, search, searchNet,
@@ -36,7 +36,7 @@ const SearchKanjis = () => {
           {/* search by type*/}
           <FormRowSelect
             labelText='Theo nét viết'
-            name='searchTitle'
+            name='searchNet'
             value={searchNet}
             handleChange={handleSearch}
             list={['all', ...chudeOptions]}

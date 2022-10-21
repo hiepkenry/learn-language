@@ -8,11 +8,11 @@ const {
   getAllKanjis,
   updateKanji,
   getKanji,
-  showStats,
+
 } = require('../controllers/kanjis');
 
 router.route('/').post(testUser, createKanji).get(getAllKanjis);
-// router.route('/stats').get(showStats);
+
 
 router
   .route('/:id')

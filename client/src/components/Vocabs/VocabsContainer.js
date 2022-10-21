@@ -16,6 +16,7 @@ const VocabsContainer = () => {
     searchStatus,
     searchType,
     searchTitle,
+    searchLevel,
     searchCurriculum,
     sort,
     voice,
@@ -24,7 +25,7 @@ const VocabsContainer = () => {
 
   useEffect(() => {
     dispatch(getAllVocabs());
-  }, [page, search, searchStatus, searchType, searchTitle, searchCurriculum, sort]);
+  }, [page, search, searchStatus, searchType, searchTitle, searchCurriculum, sort, searchLevel]);
 
   if (isLoading) {
     return <Loading center />;

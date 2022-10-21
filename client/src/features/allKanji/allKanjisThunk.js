@@ -1,10 +1,11 @@
 import customFetch, { checkForUnauthorizedResponse } from '../../utils/axios';
 
 export const getAllKanjisThunk = async (_, thunkAPI) => {
-  const { page, search, searchStatus, sort, searchLevel, searchNet } =
-    thunkAPI.getState().allKanjis;
 
+  const { page, search, searchStatus, sort, searchLevel, searchNet } =
+    thunkAPI.getState().allkanjis;
   let url = `/kanjis?status=${searchStatus}&chude=${searchNet}&searchLevel=${searchLevel}&sort=${sort}&page=${page}`;
+  console.log(url);
   if (search) {
     url = url + `&search=${search}`;
   }
